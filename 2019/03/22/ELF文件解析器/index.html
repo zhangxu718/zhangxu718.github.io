@@ -6,21 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>ELF文件解析器 | Hexo</title>
+  <title>ELF文件解析器 | Lil&#39; Goldfish</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title: ELF文件tags: ELF文件格式 tags: ELF文件">
+  <meta name="description" content="ELF(Executable and Linking Format), 即”可执行可连接格式”, 最初由UNIX系统实验室做为应用程序二进制值接口(Application Binary Interface - ABI)的一部分而制定和发布。 一、ELF文件的静态结构1.1 介绍具有Executable and Linking Format, 即”可执行可连接格式”, 具有这种格式的文件成为ELF">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ELF文件解析器">
 <meta property="og:url" content="http://yoursite.com/2019/03/22/ELF文件解析器/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="title: ELF文件tags: ELF文件格式 tags: ELF文件">
+<meta property="og:site_name" content="Lil&#39; Goldfish">
+<meta property="og:description" content="ELF(Executable and Linking Format), 即”可执行可连接格式”, 最初由UNIX系统实验室做为应用程序二进制值接口(Application Binary Interface - ABI)的一部分而制定和发布。 一、ELF文件的静态结构1.1 介绍具有Executable and Linking Format, 即”可执行可连接格式”, 具有这种格式的文件成为ELF">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-22T02:26:24.645Z">
+<meta property="og:image" content="http://yoursite.com/images/ELF文件格式视图.png">
+<meta property="og:updated_time" content="2019-03-22T03:15:36.139Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ELF文件解析器">
-<meta name="twitter:description" content="title: ELF文件tags: ELF文件格式 tags: ELF文件">
+<meta name="twitter:description" content="ELF(Executable and Linking Format), 即”可执行可连接格式”, 最初由UNIX系统实验室做为应用程序二进制值接口(Application Binary Interface - ABI)的一部分而制定和发布。 一、ELF文件的静态结构1.1 介绍具有Executable and Linking Format, 即”可执行可连接格式”, 具有这种格式的文件成为ELF">
+<meta name="twitter:image" content="http://yoursite.com/images/ELF文件格式视图.png">
   
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Lil&#39; Goldfish" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -50,7 +52,7 @@
 			<img src class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">John Doe</a></h1>
+		  <h1 class="header-author"><a href="/">Goldfish</a></h1>
 		</hgroup>
 		
 
@@ -108,7 +110,7 @@
 				<img src class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">John Doe</h1>
+			  <h1 class="header-author js-header-author">Goldfish</h1>
 			</hgroup>
 			
 			
@@ -174,9 +176,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>title: ELF文件<br>tags: ELF文件格式</p>
-<h2 id="tags-ELF文件"><a href="#tags-ELF文件" class="headerlink" title="tags: ELF文件"></a>tags: ELF文件</h2>
+        <p> ELF(Executable and Linking Format), 即”可执行可连接格式”, 最初由UNIX系统实验室做为应用程序二进制值接口(Application Binary Interface - ABI)的一部分而制定和发布。</p>
+<h2 id="一、ELF文件的静态结构"><a href="#一、ELF文件的静态结构" class="headerlink" title="一、ELF文件的静态结构"></a>一、ELF文件的静态结构</h2><h3 id="1-1-介绍"><a href="#1-1-介绍" class="headerlink" title="1.1 介绍"></a>1.1 介绍</h3><p>具有Executable and Linking Format, 即”可执行可连接格式”, 具有这种格式的文件成为ELF文件。ELF规范中把ELF文件宽泛地称为”目标文件(object file)”,一般地, 我们把经过编译但没有连接的文件(Linux/Unix中的.o文件)成为目标文件,而ELF文件仅指连接好的可执行文件。<br>在ELF规范中,符合ELF文件格式规范的都成为ELF文件,也称为目标文件,而经过编译但没有连接的文件则称为”可重定位文件(relocatable file)”或”待重定位文件”。本篇采取与此规范相同的命名方式。</p>
+<h3 id="1-2-ELF文件格式概述"><a href="#1-2-ELF文件格式概述" class="headerlink" title="1.2 ELF文件格式概述"></a>1.2 ELF文件格式概述</h3><p>从连接的角度和运行的角度, 可以分别把目标文件的组成部分做一下划分:<br>           目标文件格式<br><img src="/images/ELF文件格式视图.png" alt="目标文件格式"></p>
+<h3 id="ELF文件头-ELF-header"><a href="#ELF文件头-ELF-header" class="headerlink" title="ELF文件头(ELF header)"></a>ELF文件头(ELF header)</h3><p>位于文件的最开始处,包含整个文件的结构信息。</p>
+<h3 id="节-section"><a href="#节-section" class="headerlink" title="节(section)"></a>节(section)</h3><p>是专用于连接过程而言的,在每个节中包含有指令数据、符号数据、重定位数据等。</p>
+<h3 id="程序头表-program-header-table"><a href="#程序头表-program-header-table" class="headerlink" title="程序头表(program header table)"></a>程序头表(program header table)</h3><p>在运行过程中是必须的,在连接过程中是可选的,它的作用是告诉操作系统如何创建<br>进程的镜像。</p>
+<h3 id="节头表-section-header-table"><a href="#节头表-section-header-table" class="headerlink" title="节头表(section header table)"></a>节头表(section header table)</h3><p>包含有文件中所有节信息,在连接视图中,节头表是必须存在的,ELF文件中每个节<br>要在节头表中有一个对应的注册项,这个注册项描述了节的名称,大小等等。</p>
+<p>在上图中,程序头在ELF文件头之后,节头表在节信息之后,在实际的文件中,这个顺序并不固定。 在ELF文件的各个组成部分中,只有ELF文件头的位置是固定的,其他内容的位置均可改变。</p>
+
       
 
       
@@ -314,7 +322,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 John Doe
+    		&copy; 2019 Goldfish
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
