@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>ELF文件解析器 | Lil&#39; Goldfish</title>
+  <title>ELF文件解析器(一) | Lil&#39; Goldfish</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="ELF(Executable and Linking Format), 即”可执行可连接格式”, 最初由UNIX系统实验室做为应用程序二进制值接口(Application Binary Interface - ABI)的一部分而制定和发布。 一、ELF文件的静态结构1.1 介绍具有Executable and Linking Format, 即”可执行可连接格式”, 具有这种格式的文件称为ELF">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ELF文件解析器">
+<meta property="og:title" content="ELF文件解析器(一)">
 <meta property="og:url" content="http://yoursite.com/2019/03/22/ELF文件解析器/index.html">
 <meta property="og:site_name" content="Lil&#39; Goldfish">
 <meta property="og:description" content="ELF(Executable and Linking Format), 即”可执行可连接格式”, 最初由UNIX系统实验室做为应用程序二进制值接口(Application Binary Interface - ABI)的一部分而制定和发布。 一、ELF文件的静态结构1.1 介绍具有Executable and Linking Format, 即”可执行可连接格式”, 具有这种格式的文件称为ELF">
@@ -22,10 +22,9 @@
 <meta property="og:image" content="http://yoursite.com/images/e_type.png">
 <meta property="og:image" content="http://yoursite.com/images/ELF节头表结构.png">
 <meta property="og:image" content="http://yoursite.com/images/ELF程序头结构.png">
-<meta property="og:image" content="http://yoursite.com/images/ELF解析01.png">
-<meta property="og:updated_time" content="2019-03-22T12:58:59.960Z">
+<meta property="og:updated_time" content="2019-03-22T13:07:40.765Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ELF文件解析器">
+<meta name="twitter:title" content="ELF文件解析器(一)">
 <meta name="twitter:description" content="ELF(Executable and Linking Format), 即”可执行可连接格式”, 最初由UNIX系统实验室做为应用程序二进制值接口(Application Binary Interface - ABI)的一部分而制定和发布。 一、ELF文件的静态结构1.1 介绍具有Executable and Linking Format, 即”可执行可连接格式”, 具有这种格式的文件称为ELF">
 <meta name="twitter:image" content="http://yoursite.com/images/ELF文件格式视图.png">
   
@@ -73,7 +72,7 @@
 			</ul>
 		</nav>
 		<nav>
-    			总文章数 1
+    			总文章数 2
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -167,7 +166,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      ELF文件解析器
+      ELF文件解析器(一)
     </h1>
   
 
@@ -203,8 +202,6 @@
 <h3 id="e-shstrndx"><a href="#e-shstrndx" class="headerlink" title="e_shstrndx"></a>e_shstrndx</h3><p>节头表与节名字表相对应的表项的索引。</p>
 <h3 id="1-4-节"><a href="#1-4-节" class="headerlink" title="1.4 节"></a>1.4 节</h3><p>在目标文件中可以包含很多”节”,这些节都登记在一张称为”节头表”的数组中。节头表的每一个表项都是一个Elf32_Shdr结构体,通过表项可以定位找到对应节。<br><img src="/images/ELF节头表结构.png" alt="节头表"></p>
 <h3 id="1-5程序头"><a href="#1-5程序头" class="headerlink" title="1.5程序头"></a>1.5程序头</h3><p>一个可执行文件的程序头表是一个数组,数组中的每一项称为程序头,每个程序头描述了一个”段”或者一块用于准备执行程序的信息。一个目标文件中的段可以包含一个或多个节。<br><img src="/images/ELF程序头结构.png" alt="程序头表"></p>
-<h2 id="二、ELF文件解析"><a href="#二、ELF文件解析" class="headerlink" title="二、ELF文件解析"></a>二、ELF文件解析</h2><h3 id="2-1打开ELF文件"><a href="#2-1打开ELF文件" class="headerlink" title="2.1打开ELF文件"></a>2.1打开ELF文件</h3><p>用HexView打开二进制文件,如图所示。<br><img src="/images/ELF解析01.png" alt="ELF解析01"></p>
-<p>前16个字节为e_ident数组内容,解析如下:<br>地址0x0000~0x0003表示该文件为一个ELF文件,0x0004值为2表示该文件是64位文件(内存地址用8位表示),0x0005值为1表示为<a href="https://baike.baidu.com/item/lsb" target="_blank" rel="noopener">LSB编码(小头编码)</a>。接下来一个字节表示ELF格式版本号,目前使用的最新版本是1。剩下的9个字节为填充字节。</p>
 
       
 
@@ -296,6 +293,20 @@
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2019/03/22/ELF文件解析器-二/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          ELF文件解析器(二)
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -317,7 +328,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、ELF文件的静态结构"><span class="toc-number">1.</span> <span class="toc-text">一、ELF文件的静态结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-介绍"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-ELF文件格式概述"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 ELF文件格式概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ELF文件头-ELF-header"><span class="toc-number">1.3.</span> <span class="toc-text">ELF文件头(ELF header)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#节-section"><span class="toc-number">1.4.</span> <span class="toc-text">节(section)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序头表-program-header-table"><span class="toc-number">1.5.</span> <span class="toc-text">程序头表(program header table)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#节头表-section-header-table"><span class="toc-number">1.6.</span> <span class="toc-text">节头表(section header table)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-ELF文件头"><span class="toc-number">1.7.</span> <span class="toc-text">1.3 ELF文件头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-ident"><span class="toc-number">1.8.</span> <span class="toc-text">e_ident</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-type"><span class="toc-number">1.9.</span> <span class="toc-text">e_type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-machine"><span class="toc-number">1.10.</span> <span class="toc-text">e_machine</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-version"><span class="toc-number">1.11.</span> <span class="toc-text">e_version</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-entry"><span class="toc-number">1.12.</span> <span class="toc-text">e_entry</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-phoff"><span class="toc-number">1.13.</span> <span class="toc-text">e_phoff</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-shoff"><span class="toc-number">1.14.</span> <span class="toc-text">e_shoff</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-flags"><span class="toc-number">1.15.</span> <span class="toc-text">e_flags</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-ehsize"><span class="toc-number">1.16.</span> <span class="toc-text">e_ehsize</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-phentsize"><span class="toc-number">1.17.</span> <span class="toc-text">e_phentsize</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-shentsize"><span class="toc-number">1.18.</span> <span class="toc-text">e_shentsize</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-shstrndx"><span class="toc-number">1.19.</span> <span class="toc-text">e_shstrndx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-节"><span class="toc-number">1.20.</span> <span class="toc-text">1.4 节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5程序头"><span class="toc-number">1.21.</span> <span class="toc-text">1.5程序头</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、ELF文件解析"><span class="toc-number">2.</span> <span class="toc-text">二、ELF文件解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1打开ELF文件"><span class="toc-number">2.1.</span> <span class="toc-text">2.1打开ELF文件</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、ELF文件的静态结构"><span class="toc-number">1.</span> <span class="toc-text">一、ELF文件的静态结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-介绍"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-ELF文件格式概述"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 ELF文件格式概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ELF文件头-ELF-header"><span class="toc-number">1.3.</span> <span class="toc-text">ELF文件头(ELF header)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#节-section"><span class="toc-number">1.4.</span> <span class="toc-text">节(section)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序头表-program-header-table"><span class="toc-number">1.5.</span> <span class="toc-text">程序头表(program header table)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#节头表-section-header-table"><span class="toc-number">1.6.</span> <span class="toc-text">节头表(section header table)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-ELF文件头"><span class="toc-number">1.7.</span> <span class="toc-text">1.3 ELF文件头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-ident"><span class="toc-number">1.8.</span> <span class="toc-text">e_ident</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-type"><span class="toc-number">1.9.</span> <span class="toc-text">e_type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-machine"><span class="toc-number">1.10.</span> <span class="toc-text">e_machine</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-version"><span class="toc-number">1.11.</span> <span class="toc-text">e_version</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-entry"><span class="toc-number">1.12.</span> <span class="toc-text">e_entry</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-phoff"><span class="toc-number">1.13.</span> <span class="toc-text">e_phoff</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-shoff"><span class="toc-number">1.14.</span> <span class="toc-text">e_shoff</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-flags"><span class="toc-number">1.15.</span> <span class="toc-text">e_flags</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-ehsize"><span class="toc-number">1.16.</span> <span class="toc-text">e_ehsize</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-phentsize"><span class="toc-number">1.17.</span> <span class="toc-text">e_phentsize</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-shentsize"><span class="toc-number">1.18.</span> <span class="toc-text">e_shentsize</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-shstrndx"><span class="toc-number">1.19.</span> <span class="toc-text">e_shstrndx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-节"><span class="toc-number">1.20.</span> <span class="toc-text">1.4 节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5程序头"><span class="toc-number">1.21.</span> <span class="toc-text">1.5程序头</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

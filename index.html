@@ -63,7 +63,7 @@
 			</ul>
 		</nav>
 		<nav>
-    			总文章数 1
+    			总文章数 2
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -152,6 +152,70 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ELF文件解析器-二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/22/ELF文件解析器-二/">ELF文件解析器(二)</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/22/ELF文件解析器-二/" class="archive-article-date">
+  	<time datetime="2019-03-22T13:07:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="二、ELF文件解析"><a href="#二、ELF文件解析" class="headerlink" title="二、ELF文件解析"></a>二、ELF文件解析</h2><h3 id="2-1打开ELF文件"><a href="#2-1打开ELF文件" class="headerlink" title="2.1打开ELF文件"></a>2.1打开ELF文件</h3><p>用HexView打开二进制文件,如图所示。<br><img src="/images/ELF解析01.png" alt="ELF解析01"></p>
+<p>前16个字节为e_ident数组内容,解析如下:<br>地址0x0000~0x0003表示该文件为一个ELF文件,0x0004值为2表示该文件是64位文件(内存地址用8字节表示),0x0005值为1表示为<a href="https://baike.baidu.com/item/lsb" target="_blank" rel="noopener">LSB编码(小头编码)</a>。接下来一个字节表示ELF格式版本号,目前使用的最新版本是1。剩下的9个字节为填充字节。<br>
+        
+      
+
+      
+    </p></div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/22/ELF文件解析器-二/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ELF文件解析器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -159,7 +223,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/22/ELF文件解析器/">ELF文件解析器</a>
+      <a class="article-title" href="/2019/03/22/ELF文件解析器/">ELF文件解析器(一)</a>
     </h1>
   
 
