@@ -190,6 +190,10 @@
 <h3 id="e-phentsize"><a href="#e-phentsize" class="headerlink" title="e_phentsize"></a>e_phentsize</h3><p>此字段表明在程序头中每一个表项的大小,字节为单位。</p>
 <h3 id="e-shentsize"><a href="#e-shentsize" class="headerlink" title="e_shentsize"></a>e_shentsize</h3><p>此字段表明在节头表中每一个表项大小,字节为单位。</p>
 <h3 id="e-shstrndx"><a href="#e-shstrndx" class="headerlink" title="e_shstrndx"></a>e_shstrndx</h3><p>节头表与节名字表相对应的表项的索引。</p>
+<h3 id="1-4-节"><a href="#1-4-节" class="headerlink" title="1.4 节"></a>1.4 节</h3><p>在目标文件中可以包含很多”节”,这些节都登记在一张称为”节头表”的数组中。节头表的每一个表项都是一个Elf32_Shdr结构体,通过表项可以定位找到对应节。<br><img src="/images/ELF节头表结构.png" alt="节头表"></p>
+<h3 id="1-5程序头"><a href="#1-5程序头" class="headerlink" title="1.5程序头"></a>1.5程序头</h3><p>一个可执行文件的程序头表是一个数组,数组中的每一项称为程序头,每个程序头描述了一个”段”或者一块用于准备执行程序的信息。一个目标文件中的段可以包含一个或多个节。<br><img src="/images/ELF程序头结构.png" alt="程序头表"></p>
+<h2 id="二、ELF文件解析"><a href="#二、ELF文件解析" class="headerlink" title="二、ELF文件解析"></a>二、ELF文件解析</h2><h3 id="2-1打开ELF文件"><a href="#2-1打开ELF文件" class="headerlink" title="2.1打开ELF文件"></a>2.1打开ELF文件</h3><p>用HexView打开二进制文件,如图所示。<br><img src="/images/ELF解析01.png" alt="ELF解析01"></p>
+<p>前16个字节为e_ident数组内容,解析如下:<br>地址0x0000~0x0003表示该文件为一个ELF文件,0x0004值为2表示该文件是64位文件(内存地址用8位表示),0x0005值为1表示为<a href="https://baike.baidu.com/item/lsb" target="_blank" rel="noopener">LSB编码(小头编码)</a>。接下来一个字节表示ELF格式版本号,目前使用的最新版本是1。剩下的9个字节为填充字节。</p>
 
       
 
