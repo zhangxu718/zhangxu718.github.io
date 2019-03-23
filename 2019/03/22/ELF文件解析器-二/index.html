@@ -9,6 +9,7 @@
   <title>ELF文件解析器(二) | Lil&#39; Goldfish</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="二、ELF文件解析2.1打开ELF文件用HexView打开二进制文件,如图所示。 前16个字节为e_ident数组内容,解析如下:地址0x0000~0x0003表示该文件为一个ELF文件,0x0004值为2表示该文件是64位文件(内存地址用8字节表示),0x0005值为1表示为LSB编码(小头编码)。接下来一个字节表示ELF格式版本号,目前使用的最新版本是1。剩下的9个字节为填充字节。">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ELF文件解析器(二)">
 <meta property="og:url" content="http://yoursite.com/2019/03/22/ELF文件解析器-二/index.html">
@@ -16,7 +17,7 @@
 <meta property="og:description" content="二、ELF文件解析2.1打开ELF文件用HexView打开二进制文件,如图所示。 前16个字节为e_ident数组内容,解析如下:地址0x0000~0x0003表示该文件为一个ELF文件,0x0004值为2表示该文件是64位文件(内存地址用8字节表示),0x0005值为1表示为LSB编码(小头编码)。接下来一个字节表示ELF格式版本号,目前使用的最新版本是1。剩下的9个字节为填充字节。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/images/ELF解析01.png">
-<meta property="og:updated_time" content="2019-03-22T13:08:42.943Z">
+<meta property="og:updated_time" content="2019-03-23T11:07:53.946Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ELF文件解析器(二)">
 <meta name="twitter:description" content="二、ELF文件解析2.1打开ELF文件用HexView打开二进制文件,如图所示。 前16个字节为e_ident数组内容,解析如下:地址0x0000~0x0003表示该文件为一个ELF文件,0x0004值为2表示该文件是64位文件(内存地址用8字节表示),0x0005值为1表示为LSB编码(小头编码)。接下来一个字节表示ELF格式版本号,目前使用的最新版本是1。剩下的9个字节为填充字节。">
@@ -66,7 +67,7 @@
 			</ul>
 		</nav>
 		<nav>
-    			总文章数 2
+    			总文章数 3
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -204,6 +205,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -267,6 +279,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/03/23/c-new与malloc区别/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          c++new与malloc区别
+        
+      </div>
+    </a>
   
   
     <a href="/2019/03/22/ELF文件解析器/" id="article-nav-older" class="article-nav-link-wrap">
@@ -409,6 +430,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>

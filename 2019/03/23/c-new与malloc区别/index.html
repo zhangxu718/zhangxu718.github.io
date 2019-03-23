@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Lil&#39; Goldfish</title>
+  <title>c++new与malloc区别 | Lil&#39; Goldfish</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="c++ 操作系统 数据挖掘 linux">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lil&#39; Goldfish">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="1.返回类型安全性new操作符内存分配成功时,返回对象类型的指针,类型与对象匹配。故new是符合类型安全的。malloc分配内存成功时,返回void*,需要通过强制类型转换转换成我们需要的类型。 2.内存分配失败时的返回值new分配内存失败时,会抛出bad_alloc异常,不会返回NULL,而malloc分配失败时会返回NULL。所以下面实例的代码是不会得到用户想要的结果。123456789typ">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c++new与malloc区别">
+<meta property="og:url" content="http://yoursite.com/2019/03/23/c-new与malloc区别/index.html">
 <meta property="og:site_name" content="Lil&#39; Goldfish">
-<meta property="og:description" content="c++ 操作系统 数据挖掘 linux">
+<meta property="og:description" content="1.返回类型安全性new操作符内存分配成功时,返回对象类型的指针,类型与对象匹配。故new是符合类型安全的。malloc分配内存成功时,返回void*,需要通过强制类型转换转换成我们需要的类型。 2.内存分配失败时的返回值new分配内存失败时,会抛出bad_alloc异常,不会返回NULL,而malloc分配失败时会返回NULL。所以下面实例的代码是不会得到用户想要的结果。123456789typ">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-23T12:01:26.471Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lil&#39; Goldfish">
-<meta name="twitter:description" content="c++ 操作系统 数据挖掘 linux">
+<meta name="twitter:title" content="c++new与malloc区别">
+<meta name="twitter:description" content="1.返回类型安全性new操作符内存分配成功时,返回对象类型的指针,类型与对象匹配。故new是符合类型安全的。malloc分配内存成功时,返回void*,需要通过强制类型转换转换成我们需要的类型。 2.内存分配失败时的返回值new分配内存失败时,会抛出bad_alloc异常,不会返回NULL,而malloc分配失败时会返回NULL。所以下面实例的代码是不会得到用户想要的结果。123456789typ">
   
     <link rel="alternative" href="/atom.xml" title="Lil&#39; Goldfish" type="application/atom+xml">
   
@@ -150,36 +152,63 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-c-new与malloc区别" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/23/c-new与malloc区别/" class="archive-article-date">
-  	<time datetime="2019-03-23T11:09:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-23</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/23/c-new与malloc区别/">c++new与malloc区别</a>
+    <h1 class="article-title" itemprop="name">
+      c++new与malloc区别
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/03/23/c-new与malloc区别/" class="archive-article-date">
+  	<time datetime="2019-03-23T11:09:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-返回类型安全性"><a href="#1-返回类型安全性" class="headerlink" title="1.返回类型安全性"></a>1.返回类型安全性</h3><p>new操作符内存分配成功时,返回对象类型的指针,类型与对象匹配。故new是符合<a href="https://baike.baidu.com/item/%E7%B1%BB%E5%9E%8B%E5%AE%89%E5%85%A8" target="_blank" rel="noopener">类型安全</a>的。<br>malloc分配内存成功时,返回void*,需要通过强制类型转换转换成我们需要的类型。</p>
+<h3 id="2-内存分配失败时的返回值"><a href="#2-内存分配失败时的返回值" class="headerlink" title="2.内存分配失败时的返回值"></a>2.内存分配失败时的返回值</h3><p>new分配内存失败时,会抛出bad_alloc异常,不会返回NULL,而malloc分配失败时会返回NULL。所以下面实例的代码是不会得到用户想要的结果。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typename</span> *p = <span class="keyword">new</span> <span class="keyword">typename</span>();</span><br><span class="line"><span class="keyword">if</span>(p == <span class="literal">NULL</span>)</span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>如果new分配内存失败,p的返回值也不可能为NULL,程序也不会执行到if语句,因为在定义p时会抛出异常。</p>
+<h3 id="3-是否需要指定内存大小"><a href="#3-是否需要指定内存大小" class="headerlink" title="3.是否需要指定内存大小"></a>3.是否需要指定内存大小</h3><p>new操作符申请内存无需指定,编译器会对类型信息进行推断,而malloc需要指出要申请内存的大小。</p>
+<h3 id="4-是否调用构造函数"><a href="#4-是否调用构造函数" class="headerlink" title="4.是否调用构造函数"></a>4.是否调用构造函数</h3><p>使用new操作符分配对象内存会经历三个步骤:<br>    第一步:调用调用 operator new函数<br>    第二步:运行相应的构造函数<br>    第三步:返回指向该对象的指针<br>使用malloc函数则不会调用构造函数</p>
+<h3 id="5-客户处理内存分配不足"><a href="#5-客户处理内存分配不足" class="headerlink" title="5.客户处理内存分配不足"></a>5.客户处理内存分配不足</h3><p>在operator new函数抛出异常以反映某一需求未被满足之前,它会先调用一个用户指定的错误处理函数,就是new-handler。它是一个指针类型,指向了一个无参数的无返回值的函数,即处理错误函数。为了指定错误处理函数,用户需要调用set_new_handler,该函数为一个标准库函数<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="function">new_handler <span class="title">set_new_handler</span><span class="params">(new_handler p )</span> <span class="title">throw</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>set_new_handler参数为new_handler指针,指向了抛出异常前调用的函数。其返回值也是个指针,指向set_new_handler被调用前正在执行（但马上就要发生替换）的那个new_handler函数。<br>对于malloc,用户不能干涉分配内存抛出异常时要做什么事,它只会返回NULL。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -191,95 +220,119 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/23/c-new与malloc区别/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/22/ELF文件解析器-二/" class="archive-article-date">
-  	<time datetime="2019-03-22T13:07:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/22/ELF文件解析器-二/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ELF文件解析器(二)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/22/ELF文件解析器-二/">ELF文件解析器(二)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-返回类型安全性"><span class="toc-number">1.</span> <span class="toc-text">1.返回类型安全性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-内存分配失败时的返回值"><span class="toc-number">2.</span> <span class="toc-text">2.内存分配失败时的返回值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-是否需要指定内存大小"><span class="toc-number">3.</span> <span class="toc-text">3.是否需要指定内存大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-是否调用构造函数"><span class="toc-number">4.</span> <span class="toc-text">4.是否调用构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-客户处理内存分配不足"><span class="toc-number">5.</span> <span class="toc-text">5.客户处理内存分配不足</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/22/ELF文件解析器/" class="archive-article-date">
-  	<time datetime="2019-03-22T02:15:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/22/ELF文件解析器/">ELF文件解析器(一)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -305,8 +358,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
