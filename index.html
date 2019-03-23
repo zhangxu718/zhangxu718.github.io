@@ -247,7 +247,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="二、ELF文件解析"><a href="#二、ELF文件解析" class="headerlink" title="二、ELF文件解析"></a>二、ELF文件解析</h2><h3 id="2-1打开ELF文件"><a href="#2-1打开ELF文件" class="headerlink" title="2.1打开ELF文件"></a>2.1打开ELF文件</h3><p>用HexView打开二进制文件,如图所示。<br><img src="/images/ELF解析01.png" alt="ELF解析01"></p>
+        <h2 id="二、ELF文件解析"><a href="#二、ELF文件解析" class="headerlink" title="二、ELF文件解析"></a>二、ELF文件解析</h2><h3 id="2-1-ELF文件头"><a href="#2-1-ELF文件头" class="headerlink" title="2.1 ELF文件头"></a>2.1 ELF文件头</h3><p>用HexView打开二进制文件,如图所示。<br><img src="/images/ELF解析01.png" alt="ELF解析01"></p>
 <p>前16个字节为e_ident数组内容,解析如下:<br>地址0x0000~0x0003表示该文件为一个ELF文件,0x0004值为2表示该文件是64位文件(内存地址用8字节表示),0x0005值为1表示为<a href="https://baike.baidu.com/item/lsb" target="_blank" rel="noopener">LSB编码(小头编码)</a>。接下来一个字节表示ELF格式版本号,目前使用的最新版本是1。剩下的9个字节为填充字节。<br>
         
       
