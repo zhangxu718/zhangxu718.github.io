@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Lil&#39; Goldfish</title>
+  <title>条款01:视C++为一个语言联邦 | Lil&#39; Goldfish</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="c++ 操作系统 数据挖掘 linux">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lil&#39; Goldfish">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="视C++为一个语言联邦一开始,C++对于C来说仅附加一些面带对象特性。C++最初的名称C with Classes就反应了这一关系。但如今的C++已经是个多重范型编程语言(multiparadigm programming language),一个同时支持过程式(procedural)、面向对象编程(object-oriented)、函数式(functional)、泛型编程(generic)、元编">
+<meta name="keywords" content="Effective C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="条款01:视C++为一个语言联邦">
+<meta property="og:url" content="http://yoursite.com/2019/03/25/条款01-视C-为一个语言联邦/index.html">
 <meta property="og:site_name" content="Lil&#39; Goldfish">
-<meta property="og:description" content="c++ 操作系统 数据挖掘 linux">
+<meta property="og:description" content="视C++为一个语言联邦一开始,C++对于C来说仅附加一些面带对象特性。C++最初的名称C with Classes就反应了这一关系。但如今的C++已经是个多重范型编程语言(multiparadigm programming language),一个同时支持过程式(procedural)、面向对象编程(object-oriented)、函数式(functional)、泛型编程(generic)、元编">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-25T00:34:08.693Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lil&#39; Goldfish">
-<meta name="twitter:description" content="c++ 操作系统 数据挖掘 linux">
+<meta name="twitter:title" content="条款01:视C++为一个语言联邦">
+<meta name="twitter:description" content="视C++为一个语言联邦一开始,C++对于C来说仅附加一些面带对象特性。C++最初的名称C with Classes就反应了这一关系。但如今的C++已经是个多重范型编程语言(multiparadigm programming language),一个同时支持过程式(procedural)、面向对象编程(object-oriented)、函数式(functional)、泛型编程(generic)、元编">
   
     <link rel="alternative" href="/atom.xml" title="Lil&#39; Goldfish" type="application/atom+xml">
   
@@ -150,16 +152,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-条款01-视C-为一个语言联邦" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-条款01-视C-为一个语言联邦" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/25/条款01-视C-为一个语言联邦/">条款01:视C++为一个语言联邦</a>
+    <h1 class="article-title" itemprop="name">
+      条款01:视C++为一个语言联邦
     </h1>
   
 
@@ -174,10 +174,35 @@
       
         <h2 id="视C-为一个语言联邦"><a href="#视C-为一个语言联邦" class="headerlink" title="视C++为一个语言联邦"></a>视C++为一个语言联邦</h2><p>一开始,C++对于C来说仅附加一些面带对象特性。C++最初的名称<strong>C with Classes就反应了这一关系。<br>但如今的C++已经是个</strong>多重范型编程语言(multiparadigm programming language)<strong>,一个同时支持</strong>过程式(procedural)<strong>、</strong>面向对象编程(object-oriented)<strong>、</strong>函数式(functional)<strong>、</strong>泛型编程(generic)<strong>、</strong>元编程形式(metaprogramming)<strong>的语言。我们将如何理解这门语言呢？<br>最简单的方法将C++视为</strong>一个由相关语言组成的联邦而非单一语言**,在某一次语言中,各种守则都倾向简单易懂,并且容易记住。为了理解C++,我们需要理解以下4个次语言。</p>
 <h3 id="C"><a href="#C" class="headerlink" title="C"></a>C</h3><p>C++仍是以C为基础。区块、语句、预处理器、内置数据类型、数组、指针都来源于C,很多时候C++对问题的解法就是较高级的C解法。但当你以C++内的C工作时,高效编程守则照应出C的局限:没有异常、没有重载…</p>
-<h3 id="Object-Oriented-C"><a href="#Object-Oriented-C" class="headerlink" title="Object-Oriented C++"></a>Object-Oriented C++</h3>
-        
+<h3 id="Object-Oriented-C"><a href="#Object-Oriented-C" class="headerlink" title="Object-Oriented C++"></a>Object-Oriented C++</h3><a id="more"></a>
+<p>这部分是C with Classes所要求的:<strong>classes(构造函数、析构函数)</strong>,<strong>封装(encapsulation)</strong>、<strong>多态(polymorphism)</strong>、<strong>继承(inheritance)</strong>、<strong>虚函数(动态绑定)</strong>等等…这些是C++面向对象的部分。</p>
+<h3 id="Template-C"><a href="#Template-C" class="headerlink" title="Template C++"></a>Template C++</h3><p>这是C++的泛型编程部分,Template相关考虑与设计已经弥漫整个C++,良好的编程守则中,”惟Template适用”的特殊条款并不少见。由于templates威力强大,它们带来的崭新编程范型,也就是所谓的<strong>templates metaprogramming(TMP,模版元编程)</strong>。TMP编程规则很少与主流C++规则互相影响。</p>
+<h3 id="STL"><a href="#STL" class="headerlink" title="STL"></a>STL</h3><p>STL是标准模版库,它对<strong>容器(containers)</strong>,<strong>迭代器(iterators)</strong>,<strong>算法(algorithms)</strong>以及<strong>函数对象(function objects)</strong>的规约有极佳的紧密配合与协调。STL有自己的办事方式,当你使用STL时,你必须遵守它的规约。<br>当你从一个次语言切换到另一种次语言,你需要改变编程策略来实现高效编程守则。</p>
+<h3 id="请记住"><a href="#请记住" class="headerlink" title="请记住"></a>请记住</h3><p>**C++高效编程守则视情况而变化,具体取决于逆使用C++的哪一部分</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -197,16 +222,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/25/条款01-视C-为一个语言联邦/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/25/条款01-视C-为一个语言联邦/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/23/c-new与malloc区别/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">c++new与malloc区别</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -221,239 +305,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-c-new与malloc区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/23/c-new与malloc区别/">c++new与malloc区别</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/23/c-new与malloc区别/" class="archive-article-date">
-  	<time datetime="2019-03-23T11:09:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-返回类型安全性"><a href="#1-返回类型安全性" class="headerlink" title="1.返回类型安全性"></a>1.返回类型安全性</h3><p>new操作符内存分配成功时,返回对象类型的指针,类型与对象匹配。故new是符合<a href="https://baike.baidu.com/item/%E7%B1%BB%E5%9E%8B%E5%AE%89%E5%85%A8" target="_blank" rel="noopener">类型安全</a>的。<br>malloc分配内存成功时,返回void*,需要通过强制类型转换转换成我们需要的类型。</p>
-<h3 id="2-内存分配失败时的返回值"><a href="#2-内存分配失败时的返回值" class="headerlink" title="2.内存分配失败时的返回值"></a>2.内存分配失败时的返回值</h3><p>new分配内存失败时,会抛出bad_alloc异常,不会返回NULL,而malloc分配失败时会返回NULL。所以下面实例的代码是不会得到用户想要的结果。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typename</span> *p = <span class="keyword">new</span> <span class="keyword">typename</span>();</span><br><span class="line"><span class="keyword">if</span>(p == <span class="literal">NULL</span>)</span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/23/c-new与malloc区别/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#视C-为一个语言联邦"><span class="toc-number">1.</span> <span class="toc-text">视C++为一个语言联邦</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#C"><span class="toc-number">1.1.</span> <span class="toc-text">C</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Object-Oriented-C"><span class="toc-number">1.2.</span> <span class="toc-text">Object-Oriented C++</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Template-C"><span class="toc-number">1.3.</span> <span class="toc-text">Template C++</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#STL"><span class="toc-number">1.4.</span> <span class="toc-text">STL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请记住"><span class="toc-number">1.5.</span> <span class="toc-text">请记住</span></a></li></ol></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
   
-    <article id="post-ELF文件解析器-二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/22/ELF文件解析器-二/">ELF文件解析器(二)</a>
-    </h1>
   
 
-        
-        <a href="/2019/03/22/ELF文件解析器-二/" class="archive-article-date">
-  	<time datetime="2019-03-22T13:07:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="二、ELF文件解析"><a href="#二、ELF文件解析" class="headerlink" title="二、ELF文件解析"></a>二、ELF文件解析</h2><h3 id="2-1-ELF文件头"><a href="#2-1-ELF文件头" class="headerlink" title="2.1 ELF文件头"></a>2.1 ELF文件头</h3><p>用HexView打开二进制文件,如图所示。<br><img src="/images/ELF解析01.png" alt="ELF解析01"></p>
-<p>前16个字节为e_ident数组内容,解析如下:<br>地址0x0000~0x0003表示该文件为一个ELF文件,0x0004值为2表示该文件是64位文件(内存地址用8字节表示),0x0005值为1表示为<a href="https://baike.baidu.com/item/lsb" target="_blank" rel="noopener">LSB编码(小头编码)</a>。接下来一个字节表示ELF格式版本号,目前使用的最新版本是1。剩下的9个字节为填充字节。<br>
-        
-      
-
-      
-    </p></div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/22/ELF文件解析器-二/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ELF文件解析器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/22/ELF文件解析器/">ELF文件解析器(一)</a>
-    </h1>
   
 
-        
-        <a href="/2019/03/22/ELF文件解析器/" class="archive-article-date">
-  	<time datetime="2019-03-22T02:15:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p> ELF(Executable and Linking Format), 即”可执行可连接格式”, 最初由UNIX系统实验室做为应用程序二进制值接口(Application Binary Interface - ABI)的一部分而制定和发布。</p>
-<h2 id="一、ELF文件的静态结构"><a href="#一、ELF文件的静态结构" class="headerlink" title="一、ELF文件的静态结构"></a>一、ELF文件的静态结构</h2><h3 id="1-1-介绍"><a href="#1-1-介绍" class="headerlink" title="1.1 介绍"></a>1.1 介绍</h3><p>具有Executable and Linking Format, 即”可执行可连接格式”, 具有这种格式的文件称为ELF文件。ELF规范中把ELF文件宽泛地称为”目标文件(object file)”,一般地, 我们把经过编译但没有连接的文件(Linux/Unix中的.o文件)称为目标文件,而ELF文件仅指连接好的可执行文件。<br>在ELF规范中,符合ELF文件格式规范的都成为ELF文件,也称为目标文件,而经过编译但没有连接的文件则称为”可重定位文件(relocatable file)”或”待重定位文件”。本篇采取与此规范相同的命名方式。</p>
-<h3 id="1-2-ELF文件格式概述"><a href="#1-2-ELF文件格式概述" class="headerlink" title="1.2 ELF文件格式概述"></a>1.2 ELF文件格式概述</h3><p>从连接的角度和运行的角度, 可以分别把目标文件的组成部分做一下划分:<br>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;目标文件格式<br>
-        
-      
-
-      
-    </p></div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/22/ELF文件解析器/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
+
   
 
 
@@ -479,8 +356,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
