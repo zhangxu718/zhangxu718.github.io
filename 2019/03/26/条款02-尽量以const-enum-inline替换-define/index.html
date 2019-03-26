@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Lil&#39; Goldfish</title>
+  <title>条款02:尽量以const,enum,inline替换 #define | Lil&#39; Goldfish</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="c++ 操作系统 数据挖掘 linux">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lil&#39; Goldfish">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="此条款或许可以改为“宁以编译器替换预处理器”比较好,因为或许#define不被视为语言的一部分。当你做出如下宏定义:1#define ASPECT_RATIO 1.653 该名称ASPECT_RATIO或许从未被编译器看到,也许编译器开始处理源码之前它就被预处理器移走了。于是记号名称ASPECT_RATIO可能从未进入记号表内。于是当你运用此常量但获得一个编译错误信息时,可能会产生困惑,因为这个错">
+<meta name="keywords" content="Effective C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="条款02:尽量以const,enum,inline替换 #define">
+<meta property="og:url" content="http://yoursite.com/2019/03/26/条款02-尽量以const-enum-inline替换-define/index.html">
 <meta property="og:site_name" content="Lil&#39; Goldfish">
-<meta property="og:description" content="c++ 操作系统 数据挖掘 linux">
+<meta property="og:description" content="此条款或许可以改为“宁以编译器替换预处理器”比较好,因为或许#define不被视为语言的一部分。当你做出如下宏定义:1#define ASPECT_RATIO 1.653 该名称ASPECT_RATIO或许从未被编译器看到,也许编译器开始处理源码之前它就被预处理器移走了。于是记号名称ASPECT_RATIO可能从未进入记号表内。于是当你运用此常量但获得一个编译错误信息时,可能会产生困惑,因为这个错">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-26T13:35:27.117Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lil&#39; Goldfish">
-<meta name="twitter:description" content="c++ 操作系统 数据挖掘 linux">
+<meta name="twitter:title" content="条款02:尽量以const,enum,inline替换 #define">
+<meta name="twitter:description" content="此条款或许可以改为“宁以编译器替换预处理器”比较好,因为或许#define不被视为语言的一部分。当你做出如下宏定义:1#define ASPECT_RATIO 1.653 该名称ASPECT_RATIO或许从未被编译器看到,也许编译器开始处理源码之前它就被预处理器移走了。于是记号名称ASPECT_RATIO可能从未进入记号表内。于是当你运用此常量但获得一个编译错误信息时,可能会产生困惑,因为这个错">
   
     <link rel="alternative" href="/atom.xml" title="Lil&#39; Goldfish" type="application/atom+xml">
   
@@ -150,36 +152,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-条款02-尽量以const-enum-inline替换-define" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      条款02:尽量以const,enum,inline替换 #define
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/26/条款02-尽量以const-enum-inline替换-define/" class="archive-article-date">
+
+        
+        <a href="/2019/03/26/条款02-尽量以const-enum-inline替换-define/" class="archive-article-date">
   	<time datetime="2019-03-26T12:31:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-26</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/26/条款02-尽量以const-enum-inline替换-define/">条款02:尽量以const,enum,inline替换 #define</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>此条款或许可以改为<strong>“宁以编译器替换预处理器”</strong>比较好,因为或许#define不被视为语言的一部分。当你做出如下宏定义:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ASPECT_RATIO 1.653</span></span><br></pre></td></tr></table></figure></p>
+<p>该名称ASPECT_RATIO或许从未被编译器看到,也许编译器开始处理源码之前它就被预处理器移走了。于是记号名称ASPECT_RATIO可能从未进入记号表内。<strong>于是当你运用此常量但获得一个编译错误信息时,可能会产生困惑,因为这个错误信息也许会提到1.653而不是ASPECT_RATIO</strong>。于是你将因为追踪它而浪费时间。<br><strong>解决之道是以一个常量来替换上述的宏</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> AspectRatio = <span class="number">1.653</span>;</span><br></pre></td></tr></table></figure></p>
+<p>作为语言常量,AspectRatio肯定会被编译器看到,当然就会进入记号表内。当我们以常量来替换#define时,有两种特殊情况。<strong>第一是定义常量指针</strong>。<br><strong>指针常量:</strong>指针本身为常量,也就是指针本身不可改变,但指针所指之物可以改变;<br><a id="more"></a><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* <span class="keyword">const</span> p; <span class="comment">//const pointer,non-const data</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>常量指针:</strong>指针所指之物为常量,不可改变,用指针来指向这个常量,所以指针本身可以改变。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>* p; <span class="comment">//non-const pointer,const data</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>指向常量的常指针:</strong>指针本身与指针所指之物皆为常量,均不可改变。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>* <span class="keyword">const</span> p; <span class="comment">//const pointer,const data</span></span><br></pre></td></tr></table></figure></p>
+<p>由于常量定义式通常放在头文件内(以便被不同的源文件含入),因此有必要将指针本身(而不只是指针所指之物)声明为const,也就是将该指针声明为<strong>指向常量的常指针。</strong><br><strong>第二个值得注意的是class专属常量</strong>,为了将常量的作用域限定于class内且此常量至多只有一份实体(也就是该常量应该是本类共享一个,而不是每个对象各有该常量),需要让它成为class的一个成员,并且让它成为static成员。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GamePlayer</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> NumTurns = <span class="number">5</span>; <span class="comment">//常量声明式</span></span><br><span class="line">    <span class="keyword">int</span> scores[NumTurns];</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>然而上述NumTurns是声明式而非定义式。通常C++要求你对你使用的任何东西提供一个定义式,但如果<strong>它是个class专属常量又是static且为整数类型(intergral type 例如ints,chars,bools),则不需要特殊处理</strong>,只要不取它们的地址,你可以声明并使用它们而无须提供定义式。但如果你需要取class专属常量的地址,或者编译器却坚持要看到一个定义式,你必须另外提供定义式:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> GamePlayer::NumTutns;</span><br></pre></td></tr></table></figure></p>
+<p>把上述式子放到实现文件而非头文件。由于class常量已在声明时获得初值,因此定义式可以不再设初值。<br><strong>旧式编译器或许不支持上述语法</strong>,它们不允许static成员在其声明时获得初值。此外所谓的”in-class初值设定”仅仅支持整数常量类型。所以,你可以用如下代码解决,无论是编译器不支持还是类型非整数常量。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CostEstimate</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">double</span> FudgeFactor; <span class="comment">//声明式,位于头文件</span></span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> CostEstimate::FudgeFactor = <span class="number">1.35</span>; <span class="comment">//定义式,位于实现文件</span></span><br></pre></td></tr></table></figure></p>
+<p>以上做法可满足绝大多数要求,也是你在任何时候唯一要做的事。唯一例外是<strong>当你在class编译期间需要一个class常量值</strong>,例如GamePlayer中scores数组的声明,编译器坚持必须在编译期间明确数组的大小。这时候如果你的编译器不允许完成”in-class”初值设定,可以改用”the enum hack”补偿做法,该做法将在<strong>随笔</strong>中讲解。</p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -191,209 +221,119 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/26/条款02-尽量以const-enum-inline替换-define/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/25/CRT-Startup-code/" class="archive-article-date">
-  	<time datetime="2019-03-25T12:49:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-25</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/25/CRT-Startup-code/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CRT Startup code</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/25/CRT-Startup-code/">CRT Startup code</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/25/条款01-视C-为一个语言联邦/" class="archive-article-date">
-  	<time datetime="2019-03-25T00:00:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-25</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/25/条款01-视C-为一个语言联邦/">条款01:视C++为一个语言联邦</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Effective C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/23/c-new与malloc区别/" class="archive-article-date">
-  	<time datetime="2019-03-23T11:09:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/23/c-new与malloc区别/">c++new与malloc区别</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/22/ELF文件解析器-二/" class="archive-article-date">
-  	<time datetime="2019-03-22T13:07:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/22/ELF文件解析器-二/">ELF文件解析器(二)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/22/ELF文件解析器/" class="archive-article-date">
-  	<time datetime="2019-03-22T02:15:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/22/ELF文件解析器/">ELF文件解析器(一)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -419,8 +359,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Lil&#39; Goldfish">
 <meta property="og:description" content="C++程序进入main()之前做了哪些操作,如何进入main(),执行完之后又做什么？1. 操作系统创建进程后,把控制权交给程序的入口函数 (gcc -e (_startEntryPoint)), vc6.0下为 mainCRTStartup。2. 入口函数对运行库和程序运行环境进行初始化,包括Heap,I/O,线程,global、static变量的constructor等。3. 这是才会调用ma">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-25T13:46:36.901Z">
+<meta property="og:updated_time" content="2019-03-25T13:49:21.031Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CRT Startup code">
 <meta name="twitter:description" content="C++程序进入main()之前做了哪些操作,如何进入main(),执行完之后又做什么？1. 操作系统创建进程后,把控制权交给程序的入口函数 (gcc -e (_startEntryPoint)), vc6.0下为 mainCRTStartup。2. 入口函数对运行库和程序运行环境进行初始化,包括Heap,I/O,线程,global、static变量的constructor等。3. 这是才会调用ma">
@@ -65,7 +65,7 @@
 			</ul>
 		</nav>
 		<nav>
-    			总文章数 5
+    			总文章数 6
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -173,7 +173,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="C-程序进入main-之前做了哪些操作-如何进入main-执行完之后又做什么？"><a href="#C-程序进入main-之前做了哪些操作-如何进入main-执行完之后又做什么？" class="headerlink" title="C++程序进入main()之前做了哪些操作,如何进入main(),执行完之后又做什么？"></a>C++程序进入main()之前做了哪些操作,如何进入main(),执行完之后又做什么？</h3><p><strong>1.</strong> 操作系统创建进程后,把控制权交给程序的入口函数 (gcc -e (_startEntryPoint)), vc6.0下为 mainCRTStartup。<br><strong>2.</strong> 入口函数对运行库和程序运行环境进行初始化,包括Heap,I/O,线程,global、static变量的constructor等。<br><strong>3.</strong> 这是才会调用main函数,开始执行程序主体。<br><strong>4.</strong> 执行完main函数,返回入口函数,进行清理工作,包括Heap销毁,I/O关闭,global、static变量的析构,之后等待系统调用结束进程。</p>
-<h3 id="下面分析默认为windows静态链接过程"><a href="#下面分析默认为windows静态链接过程" class="headerlink" title="下面分析默认为windows静态链接过程"></a>下面分析默认为windows静态链接过程</h3><p><strong>1.</strong> 程序执行前装载器会把用户的命令行参数和环境变量入栈,接着操作系统转移控制权给mainCRTStartup入口函数。<br>用户的命令行参数:int main(int argc, char *argv[])<br>环境变量:系统公用数据, 系统搜索路径等。<br><a id="more"></a><br><strong>2.</strong> 初始化和操作系统相关的全局变量<br><strong>3.</strong> 初始化Heap,每个进程都有属于自己的堆。它是一次性从系统中申请一块比较大的虚拟空间(实际需要时(如 malloc) 才会映射到物理页), 之后在进程中由库的堆管理算法来维护这个堆。当堆空间不够用时,会继续申请一块大的虚拟空间继续分配。所以,并非每个malloc都会调用系统API(调用系统API比较耗时,涉及到用户态到内核态的上下文切换)。<br><strong>4.</strong> I/O初始化,继承父进程的打开文件表。如果父进程没有打开的标准输入输出,该进程会初始化标准输入输出。即初始化变量stdin,stdout,stderr,它们都是FILE类型指针。<br><strong>5.</strong> 获取命令行参数和环境变量<br><strong>6.</strong> 初始化C运行库的一些数据<br><strong>7.</strong> 全局变量构造,各个全局对象、静态对象的构造函数调用和标记<strong>attribute</strong>((constructor))属性的各个函数。它们都在进入main函数前进行调用。<br>要完成此功能,需要运行库和C/C++编译器、连接器配合完成。<br><strong>1)</strong> 编译器编译某.cpp文件时,会将所有的构造函数实现作为一个整体放到.init段,把析构函数放到.finit段,在.ctors段中存入.init段的地址,即通过该地址可以访问各个构造函数。<br><strong>2)</strong> 运行时库有一个库为crtbegin.o, 它的.ctors段放置的内容为-1, ctrend.o, 它的.ctors段放置的内容也为-1.<br><strong>3)</strong> 用链接器进行连接: ld ctrbegin.o main.o crtend.o一定按这种顺序,否则出错。 链接后的.ELF文件(Linux)是将以上各个文件的.init/.finit/.ctors等段合并。.data/.text段也会合并。<br>全局变量构造时即是遍历.ctors段的内容,从-1(crtbegin.o) 开始 到 -1(crtend.o)结束, 中间的每四个字节(32位下)即是各个文件的构造函数入口地址,若非0,则进行调用。<br><strong>8.</strong> 注册析构函数, 为了支持C++类的析构函数和标记__attribute((deconstructor))属性的各个函数在main之后被调用,而且是按与构造相反的顺序调用,仍需要编译器、链接器以及运行库的支持,其原理与构造相似。<br><strong>9.</strong> 执行main函数,在这里可以用到之前已经初始化好的各种资源。<br><strong>10.</strong> 调用析构函数<br><strong>11.</strong> 释放堆<br><strong>12.</strong> 释放其他资源<br><strong>13.</strong> 调用exit系统API退出进程</p>
+<h3 id="下面分析默认为windows静态链接过程"><a href="#下面分析默认为windows静态链接过程" class="headerlink" title="下面分析默认为windows静态链接过程"></a>下面分析默认为windows静态链接过程</h3><p><strong>1.</strong> 程序执行前装载器会把用户的命令行参数和环境变量入栈,接着操作系统转移控制权给mainCRTStartup入口函数。<br>用户的命令行参数:int main(int argc, char *argv[])<br>环境变量:系统公用数据, 系统搜索路径等。<br><a id="more"></a><br><strong>2.</strong> 初始化和操作系统相关的全局变量<br><strong>3.</strong> 初始化Heap,每个进程都有属于自己的堆。它是一次性从系统中申请一块比较大的虚拟空间(实际需要时(如 malloc) 才会映射到物理页), 之后在进程中由库的堆管理算法来维护这个堆。当堆空间不够用时,会继续申请一块大的虚拟空间继续分配。所以,并非每个malloc都会调用系统API(调用系统API比较耗时,涉及到用户态到内核态的上下文切换)。<br><strong>4.</strong> I/O初始化,继承父进程的打开文件表。如果父进程没有打开的标准输入输出,该进程会初始化标准输入输出。即初始化变量stdin,stdout,stderr,它们都是FILE类型指针。<br><strong>5.</strong> 获取命令行参数和环境变量<br><strong>6.</strong> 初始化C运行库的一些数据<br><strong>7.</strong> 全局变量构造,各个全局对象、静态对象的构造函数调用和标记<strong>attribute</strong>((constructor))属性的各个函数。它们都在进入main函数前进行调用。<br>要完成此功能,需要运行库和C/C++编译器、连接器配合完成。<br><strong>1)</strong> 编译器编译某.cpp文件时,会将所有的构造函数实现作为一个整体放到.init段,把析构函数放到.finit段,在.ctors段中存入.init段的地址,即通过该地址可以访问各个构造函数。<br><strong>2)</strong> 运行时库有一个库为crtbegin.o, 它的.ctors段放置的内容为-1, ctrend.o, 它的.ctors段放置的内容也为-1.<br><strong>3)</strong> 用链接器进行连接: ld ctrbegin.o main.o crtend.o一定按这种顺序,否则出错。 链接后的.ELF文件(Linux)是将以上各个文件的.init/.finit/.ctors等段合并。.data/.text段也会合并。<br>全局变量构造时即是遍历.ctors段的内容,从-1(crtbegin.o) 开始 到 -1(crtend.o)结束, 中间的每四个字节(32位下)即是各个文件的构造函数入口地址,若非0,则进行调用。<br><strong>8.</strong> 注册析构函数, 为了支持C++类的析构函数和标记<strong>attribute((deconstructor))</strong>属性的各个函数在main之后被调用,而且是按与构造相反的顺序调用,仍需要编译器、链接器以及运行库的支持,其原理与构造相似。<br><strong>9.</strong> 执行main函数,在这里可以用到之前已经初始化好的各种资源。<br><strong>10.</strong> 调用析构函数<br><strong>11.</strong> 释放堆<br><strong>12.</strong> 释放其他资源<br><strong>13.</strong> 调用exit系统API退出进程</p>
 
       
 
@@ -277,6 +277,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/03/26/条款02-尽量以const-enum-inline替换-define/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          条款02:尽量以const,enum,inline替换 #define
+        
+      </div>
+    </a>
   
   
     <a href="/2019/03/25/条款01-视C-为一个语言联邦/" id="article-nav-older" class="article-nav-link-wrap">
@@ -421,7 +430,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Effective C++</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -429,11 +438,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color4">Effective C++</a>
               </li>
             
             <div class="clearfix"></div>

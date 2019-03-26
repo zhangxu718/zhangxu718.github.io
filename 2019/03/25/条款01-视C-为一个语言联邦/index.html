@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>条款01:视C++为一个语言联邦 | Lil&#39; Goldfish</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="视C++为一个语言联邦一开始,C++对于C来说仅附加一些面带对象特性。C++最初的名称C with Classes就反应了这一关系。但如今的C++已经是个多重范型编程语言(multiparadigm programming language), 一个同时支持过程式(procedural)、 面向对象编程(object-oriented)、 函数式(functional)、 泛型编程(generic">
+  <meta name="description" content="一开始,C++对于C来说仅附加一些面带对象特性。C++最初的名称C with Classes就反应了这一关系。但如今的C++已经是个多重范型编程语言(multiparadigm programming language), 一个同时支持过程式(procedural)、 面向对象编程(object-oriented)、 函数式(functional)、 泛型编程(generic)、 元编程形式(me">
 <meta name="keywords" content="Effective C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="条款01:视C++为一个语言联邦">
 <meta property="og:url" content="http://yoursite.com/2019/03/25/条款01-视C-为一个语言联邦/index.html">
 <meta property="og:site_name" content="Lil&#39; Goldfish">
-<meta property="og:description" content="视C++为一个语言联邦一开始,C++对于C来说仅附加一些面带对象特性。C++最初的名称C with Classes就反应了这一关系。但如今的C++已经是个多重范型编程语言(multiparadigm programming language), 一个同时支持过程式(procedural)、 面向对象编程(object-oriented)、 函数式(functional)、 泛型编程(generic">
+<meta property="og:description" content="一开始,C++对于C来说仅附加一些面带对象特性。C++最初的名称C with Classes就反应了这一关系。但如今的C++已经是个多重范型编程语言(multiparadigm programming language), 一个同时支持过程式(procedural)、 面向对象编程(object-oriented)、 函数式(functional)、 泛型编程(generic)、 元编程形式(me">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-25T11:58:05.113Z">
+<meta property="og:updated_time" content="2019-03-26T12:32:16.791Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="条款01:视C++为一个语言联邦">
-<meta name="twitter:description" content="视C++为一个语言联邦一开始,C++对于C来说仅附加一些面带对象特性。C++最初的名称C with Classes就反应了这一关系。但如今的C++已经是个多重范型编程语言(multiparadigm programming language), 一个同时支持过程式(procedural)、 面向对象编程(object-oriented)、 函数式(functional)、 泛型编程(generic">
+<meta name="twitter:description" content="一开始,C++对于C来说仅附加一些面带对象特性。C++最初的名称C with Classes就反应了这一关系。但如今的C++已经是个多重范型编程语言(multiparadigm programming language), 一个同时支持过程式(procedural)、 面向对象编程(object-oriented)、 函数式(functional)、 泛型编程(generic)、 元编程形式(me">
   
     <link rel="alternative" href="/atom.xml" title="Lil&#39; Goldfish" type="application/atom+xml">
   
@@ -65,7 +65,7 @@
 			</ul>
 		</nav>
 		<nav>
-    			总文章数 5
+    			总文章数 6
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -172,7 +172,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="视C-为一个语言联邦"><a href="#视C-为一个语言联邦" class="headerlink" title="视C++为一个语言联邦"></a>视C++为一个语言联邦</h2><p>一开始,C++对于C来说仅附加一些面带对象特性。C++最初的名称<strong>C with Classes</strong>就反应了这一关系。<br>但如今的C++已经是个<strong>多重范型编程语言(multiparadigm programming language)</strong>, 一个同时支持<strong>过程式(procedural)</strong>、 <strong>面向对象编程(object-oriented)</strong>、 <strong>函数式(functional)</strong>、 <strong>泛型编程(generic)</strong>、 <strong>元编程形式(metaprogramming)</strong>的语言。我们将如何理解这门语言呢？<br>最简单的方法将C++视为<strong>一个由相关语言组成的联邦而非单一语言</strong>,在某一次语言中,各种守则都倾向简单易懂,并且容易记住。为了理解C++,我们需要理解以下4个次语言。</p>
+        <p>一开始,C++对于C来说仅附加一些面带对象特性。C++最初的名称<strong>C with Classes</strong>就反应了这一关系。<br>但如今的C++已经是个<strong>多重范型编程语言(multiparadigm programming language)</strong>, 一个同时支持<strong>过程式(procedural)</strong>、 <strong>面向对象编程(object-oriented)</strong>、 <strong>函数式(functional)</strong>、 <strong>泛型编程(generic)</strong>、 <strong>元编程形式(metaprogramming)</strong>的语言。我们将如何理解这门语言呢？<br>最简单的方法将C++视为<strong>一个由相关语言组成的联邦而非单一语言</strong>,在某一次语言中,各种守则都倾向简单易懂,并且容易记住。为了理解C++,我们需要理解以下4个次语言。</p>
 <h3 id="C"><a href="#C" class="headerlink" title="C"></a>C</h3><p>C++仍是以C为基础。区块、语句、预处理器、内置数据类型、数组、指针都来源于C,很多时候C++对问题的解法就是较高级的C解法。但当你以C++内的C工作时,高效编程守则照应出C的局限:没有异常、没有重载…</p>
 <h3 id="Object-Oriented-C"><a href="#Object-Oriented-C" class="headerlink" title="Object-Oriented C++"></a>Object-Oriented C++</h3><a id="more"></a>
 <p>这部分是C with Classes所要求的:<strong>classes(构造函数、析构函数)</strong>,<strong>封装(encapsulation)</strong>、<strong>多态(polymorphism)</strong>、<strong>继承(inheritance)</strong>、<strong>虚函数(动态绑定)</strong>等等…这些是C++面向对象的部分。</p>
@@ -321,7 +321,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#视C-为一个语言联邦"><span class="toc-number">1.</span> <span class="toc-text">视C++为一个语言联邦</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#C"><span class="toc-number">1.1.</span> <span class="toc-text">C</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Object-Oriented-C"><span class="toc-number">1.2.</span> <span class="toc-text">Object-Oriented C++</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Template-C"><span class="toc-number">1.3.</span> <span class="toc-text">Template C++</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#STL"><span class="toc-number">1.4.</span> <span class="toc-text">STL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请记住"><span class="toc-number">1.5.</span> <span class="toc-text">请记住</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#C"><span class="toc-number">1.</span> <span class="toc-text">C</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Object-Oriented-C"><span class="toc-number">2.</span> <span class="toc-text">Object-Oriented C++</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Template-C"><span class="toc-number">3.</span> <span class="toc-text">Template C++</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#STL"><span class="toc-number">4.</span> <span class="toc-text">STL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请记住"><span class="toc-number">5.</span> <span class="toc-text">请记住</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -435,7 +435,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Effective C++</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -443,11 +443,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color4">Effective C++</a>
               </li>
             
             <div class="clearfix"></div>
