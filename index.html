@@ -63,7 +63,7 @@
 			</ul>
 		</nav>
 		<nav>
-    			总文章数 6
+    			总文章数 7
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -151,6 +151,81 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-enum-hack" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/27/enum-hack/">enum hack</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/27/enum-hack/" class="archive-article-date">
+  	<time datetime="2019-03-27T10:39:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在Effective C++中条款2:<strong>尽量以const,enum,inline来代替#define</strong>,如果你需要一个类内专属常量,可以将其声明为class内的成员 <strong>static const int num = 5;注意 这是声明,而不是定义。</strong>做法仅限作用在整数类型且不取它的地址时才可以通过编译。但假如你确实是如此做的,但你的编译器却错误的不允许你这样做,可以改用<strong>the enum hack</strong>做法。<br><strong>enume hack的理论基础是:一个属于枚举类型的数值可权充ints被使用</strong>,举个例子:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GamePlayer</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">enum</span> &#123; NumTurns = <span class="number">5</span>&#125;;     <span class="comment">//令NumTurns成为5的一个记号名称</span></span><br><span class="line">    <span class="keyword">int</span> scores[NumTurns]; </span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>基于数个理由enum hack值得我们认识。第一,<strong>enum hack的行为某方面说比较像#define而不是const,有时这正是你需要的。</strong>例如:取const的地址合法,取enum的地址就不合法,与#define相同。如果你不想让别人获得一个指针或者引用指向你的某个整数常量,enum可以帮助你实现这个约束。此外,不够优秀的编译器可能会设定另外的空间来存储”整数型const对象”,但enums和#defines绝不会导致这样的内存分配。第二,<strong>认识enum hack完全是为了实用主义。</strong>事实上,”enum hack”是模版元编程的基础技术。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/27/enum-hack/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-条款02-尽量以const-enum-inline替换-define" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -700,19 +775,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Effective C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
             
             <div class="clearfix"></div>
