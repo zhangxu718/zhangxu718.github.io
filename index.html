@@ -63,7 +63,7 @@
 			</ul>
 		</nav>
 		<nav>
-    			总文章数 7
+    			总文章数 8
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -152,6 +152,81 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-条款03-尽可能使用const" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/27/条款03-尽可能使用const/">条款03: 尽可能使用const</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/27/条款03-尽可能使用const/" class="archive-article-date">
+  	<time datetime="2019-03-27T13:48:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>const可以在classes外部修饰global或namespace作用域中的常量,或修饰文件、函数、或区块作用域内中被修饰为static的对象。你也可以修饰classes内的static或non-static成员变量。面对指针,你可以有如下做法:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> greeting[] = <span class="string">"Hello"</span>;</span><br><span class="line"><span class="keyword">char</span> *p = greeting;             <span class="comment">//non-const data, non-const pointer</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span>* p = greeting;       <span class="comment">//const data,指针指向的对象为const</span></span><br><span class="line"><span class="keyword">char</span>* <span class="keyword">const</span> p = greeting;       <span class="comment">//const pointer,指针本身为const</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span>* <span class="keyword">const</span> p = greeting; <span class="comment">//const data, const pointer</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>如果关键字const出现在星号左边,表示被指物为常量,如果出现在星号右边,表示指针自身是常量,如果出现在星号两边,表示指针和被指物都为常量。</strong><br>对于指针所指物为常量,有些人会把const写在类型前,有些人会写在类型后,所以一下两种写法皆表示指针所指物为常量。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span>* p = greeting;</span><br><span class="line"><span class="keyword">char</span> <span class="keyword">const</span> *p = greeting;</span><br></pre></td></tr></table></figure></p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Effective C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/27/条款03-尽可能使用const/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-enum-hack" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -234,7 +309,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/26/条款02-尽量以const-enum-inline替换-define/">条款02:尽量以const,enum,inline替换 #define</a>
+      <a class="article-title" href="/2019/03/26/条款02-尽量以const-enum-inline替换-define/">条款02: 尽量以const,enum,inline替换 #define</a>
     </h1>
   
 
@@ -385,7 +460,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/25/条款01-视C-为一个语言联邦/">条款01:视C++为一个语言联邦</a>
+      <a class="article-title" href="/2019/03/25/条款01-视C-为一个语言联邦/">条款01: 视C++为一个语言联邦</a>
     </h1>
   
 
@@ -775,19 +850,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Effective C++</a>
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Effective C++</a>
               </li>
             
             <div class="clearfix"></div>
