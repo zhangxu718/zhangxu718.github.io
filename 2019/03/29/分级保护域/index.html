@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Linux | Lil&#39; Goldfish</title>
+  <title>分级保护域 | Lil&#39; Goldfish</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="c++ 操作系统 数据挖掘 linux">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lil&#39; Goldfish">
-<meta property="og:url" content="http://yoursite.com/tags/Linux/index.html">
+  <meta name="description" content="在计算机科学中, 分级保护域（hierarchical protection domains)经常被叫作保护环（Protection Rings），又称环型保护（Rings Protection）、CPU环（CPU Rings），简称Rings。这是一种用来在发生故障时保护数据和功能，提升容错度，避免恶意操作 ，提升计算机安全的设计方式。这是一种与能力基础安全（capability-based s">
+<meta name="keywords" content="随笔">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分级保护域">
+<meta property="og:url" content="http://yoursite.com/2019/03/29/分级保护域/index.html">
 <meta property="og:site_name" content="Lil&#39; Goldfish">
-<meta property="og:description" content="c++ 操作系统 数据挖掘 linux">
+<meta property="og:description" content="在计算机科学中, 分级保护域（hierarchical protection domains)经常被叫作保护环（Protection Rings），又称环型保护（Rings Protection）、CPU环（CPU Rings），简称Rings。这是一种用来在发生故障时保护数据和功能，提升容错度，避免恶意操作 ，提升计算机安全的设计方式。这是一种与能力基础安全（capability-based s">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-29T13:42:52.648Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lil&#39; Goldfish">
-<meta name="twitter:description" content="c++ 操作系统 数据挖掘 linux">
+<meta name="twitter:title" content="分级保护域">
+<meta name="twitter:description" content="在计算机科学中, 分级保护域（hierarchical protection domains)经常被叫作保护环（Protection Rings），又称环型保护（Rings Protection）、CPU环（CPU Rings），简称Rings。这是一种用来在发生故障时保护数据和功能，提升容错度，避免恶意操作 ，提升计算机安全的设计方式。这是一种与能力基础安全（capability-based s">
   
     <link rel="alternative" href="/atom.xml" title="Lil&#39; Goldfish" type="application/atom+xml">
   
@@ -150,98 +152,182 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-分级保护域" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/22/ELF文件解析器-二/" class="archive-article-date">
-  	<time datetime="2019-03-22T13:07:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/22/ELF文件解析器-二/">ELF文件解析器(二)</a>
+    <h1 class="article-title" itemprop="name">
+      分级保护域
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/03/29/分级保护域/" class="archive-article-date">
+  	<time datetime="2019-03-29T13:37:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在计算机科学中, 分级保护域（hierarchical protection domains)经常被叫作保护环（Protection Rings），又称环型保护（Rings Protection）、CPU环（CPU Rings），简称Rings。这是一种用来在发生故障时保护数据和功能，提升容错度，避免恶意操作 ，提升计算机安全的设计方式。这是一种与能力基础安全（capability-based security）完全相反的方式。</p>
+<p>电脑操作系统提供不同的资源访问级别。在计算机体系结构中，Rings是由两个或更多的特权态组成。在一些硬件或者微代码级别上提供不同特权态模式的CPU架构上，保护环通常都是硬件强制的。Rings是从最高特权级（通常被叫作0级）到最低特权级（通常对应最大的数字）排列的。在大多数操作系统中，Ring 0拥有最高特权，并且可以和最多的硬件直接交互（比如CPU，内存）。</p>
+<p>Rings之间的特殊门是被提供用来允许外层Ring在预定义的方式内访问内层Ring的资源用的，内层Ring可以随便使用外层Ring的资源。正确使用Rings间的门可以阻止某个Ring或者特权级的程序故意滥用其他程序的资源，提升安全性。例如，某个间谍软件作为一个在Ring 3运行的用户程序，它在不通知用户的时候打开摄像头应该会被阻止，因为访问硬件需要使用被驱动程序保留的Ring 1的方法。浏览器一类在高Ring级别运行的程序必须请求权限才能访问网络，也就是受低Ring级别限制的资源。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/29/分级保护域/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/22/ELF文件解析器/" class="archive-article-date">
-  	<time datetime="2019-03-22T02:15:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/27/条款03-尽可能使用const/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">条款03: 尽可能使用const</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/22/ELF文件解析器/">ELF文件解析器(一)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -267,9 +353,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

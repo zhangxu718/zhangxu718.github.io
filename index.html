@@ -63,7 +63,7 @@
 			</ul>
 		</nav>
 		<nav>
-    			总文章数 8
+    			总文章数 9
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -151,6 +151,82 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-分级保护域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/29/分级保护域/">分级保护域</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/29/分级保护域/" class="archive-article-date">
+  	<time datetime="2019-03-29T13:37:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在计算机科学中, 分级保护域（hierarchical protection domains)经常被叫作保护环（Protection Rings），又称环型保护（Rings Protection）、CPU环（CPU Rings），简称Rings。这是一种用来在发生故障时保护数据和功能，提升容错度，避免恶意操作 ，提升计算机安全的设计方式。这是一种与能力基础安全（capability-based security）完全相反的方式。</p>
+<p>电脑操作系统提供不同的资源访问级别。在计算机体系结构中，Rings是由两个或更多的特权态组成。在一些硬件或者微代码级别上提供不同特权态模式的CPU架构上，保护环通常都是硬件强制的。Rings是从最高特权级（通常被叫作0级）到最低特权级（通常对应最大的数字）排列的。在大多数操作系统中，Ring 0拥有最高特权，并且可以和最多的硬件直接交互（比如CPU，内存）。</p>
+<p>Rings之间的特殊门是被提供用来允许外层Ring在预定义的方式内访问内层Ring的资源用的，内层Ring可以随便使用外层Ring的资源。正确使用Rings间的门可以阻止某个Ring或者特权级的程序故意滥用其他程序的资源，提升安全性。例如，某个间谍软件作为一个在Ring 3运行的用户程序，它在不通知用户的时候打开摄像头应该会被阻止，因为访问硬件需要使用被驱动程序保留的Ring 1的方法。浏览器一类在高Ring级别运行的程序必须请求权限才能访问网络，也就是受低Ring级别限制的资源。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/29/分级保护域/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-条款03-尽可能使用const" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -850,7 +926,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -858,7 +934,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">

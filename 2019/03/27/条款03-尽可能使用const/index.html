@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Lil&#39; Goldfish">
 <meta property="og:description" content="const可以在classes外部修饰global或namespace作用域中的常量,或修饰文件、函数、或区块作用域内中被修饰为static的对象。你也可以修饰classes内的static或non-static成员变量。面对指针,你可以有如下做法:12345char greeting[] = &quot;Hello&quot;;char *p = greeting;             //non-const">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-28T14:43:09.807Z">
+<meta property="og:updated_time" content="2019-03-29T13:59:02.781Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="条款03: 尽可能使用const">
 <meta name="twitter:description" content="const可以在classes外部修饰global或namespace作用域中的常量,或修饰文件、函数、或区块作用域内中被修饰为static的对象。你也可以修饰classes内的static或non-static成员变量。面对指针,你可以有如下做法:12345char greeting[] = &quot;Hello&quot;;char *p = greeting;             //non-const">
@@ -65,7 +65,7 @@
 			</ul>
 		</nav>
 		<nav>
-    			总文章数 8
+    			总文章数 9
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -185,6 +185,8 @@
 <p>真实程序中const对象通常用于passed by pointer-to-const 或 passed by reference-to-const的传递结果。<br>如果成员函数为const意味着什么?这里有两个流行概念:<strong>bitwise constness(又称physical constness) 和 logical constness</strong>,关于这两点的详细论述,将在<strong>随笔</strong>中详细写出。</p>
 <h3 id="在const和non-const成员函数中避免重复"><a href="#在const和non-const成员函数中避免重复" class="headerlink" title="在const和non-const成员函数中避免重复"></a>在const和non-const成员函数中避免重复</h3><p>假设TextBlock::operator[]中不止返回一个引用指向某字符,也执行边界检验,志记访问信息,甚至可以进行数据完整性检验。你可能会写出一下代码:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TextBlock</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span>&amp; <span class="keyword">operator</span>[](<span class="built_in">std</span>::<span class="keyword">size_t</span> pos) <span class="keyword">const</span></span><br><span class="line">    &#123; </span><br><span class="line">        ...               <span class="comment">//边界检查</span></span><br><span class="line">        ...               <span class="comment">//志记数据访问</span></span><br><span class="line">        ...               <span class="comment">//数据完整性检验</span></span><br><span class="line">        <span class="keyword">return</span> text[pos];</span><br><span class="line">     &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">char</span>&amp; <span class="keyword">operator</span>[](<span class="built_in">std</span>::<span class="keyword">size_t</span> pos)</span><br><span class="line">    &#123;</span><br><span class="line">        ...               <span class="comment">//边界检查</span></span><br><span class="line">        ...               <span class="comment">//志记数据访问</span></span><br><span class="line">        ...               <span class="comment">//数据完整性检验 </span></span><br><span class="line">        <span class="keyword">return</span> text[pos]; </span><br><span class="line">    &#125;</span><br><span class="line">prviate:</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> text;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>你可能会想到将那些操作转移到另一个成员函数中,并令两个operator[]调用它,但这还会重复一部分代码,函数调用和两次return等等。<br>真正该做的是实现operator[]的机能,使得一个能调用另一个。这促使我们将<strong>常量性转除(casting away constness)。</strong><br>一般而言,转型(casting)是个糟糕的想法。然而代码重复也不是什么令人愉快的事。本例中const operator[]完全做了non-const operator[]所做的事,唯一的不同是其返回类型多了一个const修饰。这种情况下如果将返回的const转除是安全的,因为不论谁调用non-const operator[]都一定需要有个non-const对象,否则就不能调用non-consth函数。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TextBlock</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span>&amp; <span class="keyword">operator</span>[](<span class="built_in">std</span>::<span class="keyword">size_t</span> pos) <span class="keyword">const</span></span><br><span class="line">    &#123; </span><br><span class="line">        ...               <span class="comment">//边界检查</span></span><br><span class="line">        ...               <span class="comment">//志记数据访问</span></span><br><span class="line">        ...               <span class="comment">//数据完整性检验</span></span><br><span class="line">        <span class="keyword">return</span> text[pos];</span><br><span class="line">     &#125;</span><br><span class="line">    <span class="keyword">char</span>&amp; <span class="keyword">operator</span>[](<span class="built_in">std</span>::<span class="keyword">size_t</span> pos)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">          <span class="keyword">const_cast</span>&lt;<span class="keyword">char</span>&amp;&gt;(            <span class="comment">//将operator[]返回值的const转除</span></span><br><span class="line">              <span class="keyword">static_cast</span>&lt;<span class="keyword">const</span> TextBlock&amp;&gt;(*<span class="keyword">this</span>) <span class="comment">//为*this加上const</span></span><br><span class="line">                  [pos]                            <span class="comment">//调用const operator[]</span></span><br><span class="line">          );</span><br><span class="line">    &#125;</span><br><span class="line">prviate:</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> text;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>这里有两次转型动作,我们必须指出调用的是const operator[],否则它将会调用non-const operator[]也就是它自己,所以将*this从TextBlock&amp;转型为const TextBlock&amp;。使用转型操作为其加上const,调用const operator[],并从const operator[]的返回值中移除const。</p>
+<p>###请记住<br><strong>将某些东西声明为const可帮助编译器侦测出错误用法。const可被施加于任何作用域内的对象,函数参数,函数返回类型,成员函数本体。</strong><br><strong>编译器强制实施bitwise constness,但你编写的程序应该使用概念性的常量性。</strong><br><strong>当const和non-const成员函数有着实质等价的实现时,令non-const版本调用const版本可避免代码重复。</strong></p>
 
       
 
@@ -288,6 +290,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/03/29/分级保护域/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          分级保护域
+        
+      </div>
+    </a>
   
   
     <a href="/2019/03/27/enum-hack/" id="article-nav-older" class="article-nav-link-wrap">
@@ -432,7 +443,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -440,7 +451,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
