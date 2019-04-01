@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Linux | Lil&#39; Goldfish</title>
+  <title>Lil&#39; Goldfish</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="c++ 操作系统 数据挖掘 linux">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Lil&#39; Goldfish">
-<meta property="og:url" content="http://yoursite.com/tags/Linux/index.html">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="Lil&#39; Goldfish">
 <meta property="og:description" content="c++ 操作系统 数据挖掘 linux">
 <meta property="og:locale" content="default">
@@ -152,72 +152,37 @@
           <div id="js-content" class="content-ll">
             
   
-  
+    <article id="post-ELF文件解析器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/22/ELF文件解析器-二/" class="archive-article-date">
-  	<time datetime="2019-03-22T13:07:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/22/ELF文件解析器-二/">ELF文件解析器(二)</a>
+      <a class="article-title" href="/2019/03/22/ELF文件解析器/">ELF文件解析器(一)</a>
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/22/ELF文件解析器/" class="archive-article-date">
+        
+        <a href="/2019/03/22/ELF文件解析器/" class="archive-article-date">
   	<time datetime="2019-03-22T02:15:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/22/ELF文件解析器/">ELF文件解析器(一)</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> ELF(Executable and Linking Format), 即”可执行可连接格式”, 最初由UNIX系统实验室做为应用程序二进制值接口(Application Binary Interface - ABI)的一部分而制定和发布。</p>
+<h2 id="一、ELF文件的静态结构"><a href="#一、ELF文件的静态结构" class="headerlink" title="一、ELF文件的静态结构"></a>一、ELF文件的静态结构</h2><h3 id="1-1-介绍"><a href="#1-1-介绍" class="headerlink" title="1.1 介绍"></a>1.1 介绍</h3><p>具有Executable and Linking Format, 即”可执行可连接格式”, 具有这种格式的文件称为ELF文件。ELF规范中把ELF文件宽泛地称为”目标文件(object file)”,一般地, 我们把经过编译但没有连接的文件(Linux/Unix中的.o文件)称为目标文件,而ELF文件仅指连接好的可执行文件。<br>在ELF规范中,符合ELF文件格式规范的都成为ELF文件,也称为目标文件,而经过编译但没有连接的文件则称为”可重定位文件(relocatable file)”或”待重定位文件”。本篇采取与此规范相同的命名方式。</p>
+<h3 id="1-2-ELF文件格式概述"><a href="#1-2-ELF文件格式概述" class="headerlink" title="1.2 ELF文件格式概述"></a>1.2 ELF文件格式概述</h3><p>从连接的角度和运行的角度, 可以分别把目标文件的组成部分做一下划分:<br>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;目标文件格式<br>
+        
+      
 
-        <div class="article-info info-on-right">
-          
+      
+    </p></div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -229,19 +194,45 @@
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/22/ELF文件解析器/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
-  
 
-    
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
+  
 
 
           </div>
@@ -266,10 +257,10 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
+		isHome: true,
 		isPost: false,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

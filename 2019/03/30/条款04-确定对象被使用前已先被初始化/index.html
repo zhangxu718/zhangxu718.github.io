@@ -12,11 +12,11 @@
 <meta name="keywords" content="Effective C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="条款04: 确定对象被使用前已先被初始化">
-<meta property="og:url" content="http://yoursite.com/2019/03/30/确定对象被使用前已先被初始化/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/03/30/条款04-确定对象被使用前已先被初始化/index.html">
 <meta property="og:site_name" content="Lil&#39; Goldfish">
 <meta property="og:description" content="永远在使用对象之前将它初始化。对于无任何成员的内置类型,你必须手工完成此事。12345int x = 0;const char* cstr = &quot;A C-style-string&quot;;double d;std::cin &amp;gt;&amp;gt; d;      //以input stream方式完成初始化 除内置类型之外的任何东西,初始化的责任落在构造函数身上。规则:确保构造函数将对象的每一个成员都初始化。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-30T13:43:27.121Z">
+<meta property="og:updated_time" content="2019-03-31T13:59:09.288Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="条款04: 确定对象被使用前已先被初始化">
 <meta name="twitter:description" content="永远在使用对象之前将它初始化。对于无任何成员的内置类型,你必须手工完成此事。12345int x = 0;const char* cstr = &quot;A C-style-string&quot;;double d;std::cin &amp;gt;&amp;gt; d;      //以input stream方式完成初始化 除内置类型之外的任何东西,初始化的责任落在构造函数身上。规则:确保构造函数将对象的每一个成员都初始化。">
@@ -65,7 +65,7 @@
 			</ul>
 		</nav>
 		<nav>
-    			总文章数 10
+    			总文章数 11
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -152,7 +152,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-确定对象被使用前已先被初始化" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-条款04-确定对象被使用前已先被初始化" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -164,7 +164,7 @@
   
 
         
-        <a href="/2019/03/30/确定对象被使用前已先被初始化/" class="archive-article-date">
+        <a href="/2019/03/30/条款04-确定对象被使用前已先被初始化/" class="archive-article-date">
   	<time datetime="2019-03-30T11:44:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-30</time>
 </a>
         
@@ -176,7 +176,9 @@
 <p>除内置类型之外的任何东西,初始化的责任落在<strong>构造函数</strong>身上。规则:<strong>确保构造函数将对象的每一个成员都初始化。</strong><br>这个规则很容易奉行,重要的是别混淆了<strong>赋值(assignment)和初始化(initialization)</strong>考虑以下代码:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PhoneNumber</span> &#123;</span> ... &#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ABEntry</span> &#123;</span>           <span class="comment">//Address Book Entry</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ABEntry(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; name,<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; address,</span><br><span class="line">            <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">list</span>&lt;PhoneNumber&gt;&amp; phones);</span><br><span class="line">prviate:</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> theName;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> theAddress;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">list</span>&lt;PhoneNumber&gt; thePhones;</span><br><span class="line">    <span class="keyword">int</span> numTimesConsulted;</span><br><span class="line">&#125;;</span><br><span class="line">ABEntry::ABEntry(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; name,<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; address,</span><br><span class="line">                 <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">list</span>&lt;PhoneNumber&gt;&amp; phones)</span><br><span class="line">&#123;</span><br><span class="line">    theName = name;</span><br><span class="line">    theAddress = address;</span><br><span class="line">    thePhones = phones;</span><br><span class="line">    numTimesConsulted = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <p>你会得到你期望的结果,但不是最佳做法。C++规定,<strong>对象的成员变量的初始化动作发生在进入构造函数本体之前。</strong>在上述代码的构造函数内,theName,theAddress,thePhones都不是初始化,而是被赋值。<strong>初始化的发生时间更早,发生于这些成员的默认构造函数自动调用之时。</strong><br>ABEntry的一个较佳写法是,使用<strong>member initializations(成员初值列)</strong>替换赋值动作。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ABEntry::ABEntry(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; name,<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; address,</span><br><span class="line">                 <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">list</span>&lt;PhoneNumber&gt;&amp; phones)</span><br><span class="line">  :theName(name),</span><br><span class="line">   theAddress(address),</span><br><span class="line">   thePhones(phones),         <span class="comment">//这些均为初始化</span></span><br><span class="line">   numTimesConsulted(<span class="number">0</span>)</span><br><span class="line">&#123; &#125;</span><br></pre></td></tr></table></figure></p>
-<p>此版本构造函数与上一版本最终结果相同,但通常效率较高。基于赋值的版本,首先要调用默认构造函数为theName,theAddress,thePhones设初值,然后立刻对它们赋予新值。默认构造函数所做的一切都浪费了。成员初值列避免了此问题,<strong>因为成员初值列中针对各个成员变量而设的实参,被拿去用作各个成员变量构造函数的实参。</strong><br>对大多数类型而言,比起先调用默认构造函数,然后再调用copy赋值运算符,单调用一次copy构造函数是比较高效的。通常,对于内置类型来说,其初始化和赋值的成本相同。<br>有些情况下即使面对的成员变量属于内置类型(那么其初始化和赋值的成本相同),也一定使用初值列。如果成员变量是const或reference,它们一定需要初值,不能被赋值。记住一条:总是使用成员初值列。<br>C++有着十分固定的”成员初始化次序”。<strong>base classes更早于其derived classes被初始化。</strong></p>
+<p>此版本构造函数与上一版本最终结果相同,但通常效率较高。基于赋值的版本,首先要调用默认构造函数为theName,theAddress,thePhones设初值,然后立刻对它们赋予新值。默认构造函数所做的一切都浪费了。成员初值列避免了此问题,<strong>因为成员初值列中针对各个成员变量而设的实参,被拿去用作各个成员变量构造函数的实参。</strong><br>对大多数类型而言,比起先调用默认构造函数,然后再调用copy赋值运算符,单调用一次copy构造函数是比较高效的。通常,对于内置类型来说,其初始化和赋值的成本相同。<br>有些情况下即使面对的成员变量属于内置类型(那么其初始化和赋值的成本相同),也一定使用初值列。如果成员变量是const或reference,它们一定需要初值,不能被赋值。记住一条:总是使用成员初值列。<br>C++有着十分固定的”成员初始化次序”。<strong>base classes更早于其derived classes被初始化。而类的成员变量总是以声明的顺序初始化。</strong>即使它们在成员初值列中以不同的次序出现(这是合法的),也不会也任何影响。为了避免一些晦涩错误,你应该总是以声明的次序为成员初值列次序。当两个成员变量的初始化带有次序性,比如:初始化array时需指明大小,因此代表大小的变量必须先获得初值。</p>
+<p>以上内容掌握之后,还有一件令人担心的事:<strong>不同编译单元内定义的non-local-static对象的初始化次序。</strong><br>所谓static对象,其生命从构造函数构造出来到程序结束时为止,因此stack和heap-based对象都被排除。这种对象包括<strong>global对象、定义于namespace作用域内的对象、在classes内、在函数内、以及在file作用域内被声明为static的对象。</strong>函数内的static对象称为local-static对象,其他对象称为non-local-static对象。<br>所谓编译单元是指产出单一目标文件的那些源码。基本上它是单一源码文件加上其所含入的头文件。<br>我们涉及的问题是至少含有两个源码文件,每个源码文件至少含有一个non-local-static对象。真正的问题是:<strong>如果某个编译单元内(源码文件内)的某个non-local-static对象的初始化动作使用了另一编译单元内的某个non-local-static对象,它所用到的这个对象可能尚未被初始化。</strong>这是因为:C++对定于与不同编译单元内的non-local-static对象的初始化次序无明确定义。<br>解决方法是:将每个non-local-static对象搬到自己的专属函数内(在该函数中声明该static对象),并返回一个reference指向它所含的对象。然后使用者调用这些函数,而不直接使用这些对象。换句话说,就是non-local-static对象替换成local-static对象。<strong>这是设计模式Singleton的一个常见实现手法。</strong>这个手法的基础在于:<strong>C++保证,函数内的local-static对象会在”该函数被调用期间””首次遇上该对象定义式”时被初始化。</strong><br>但从另一个角度看,这些函数”内含static对象”的事实使它们在多线程系统中带有不确定性。<strong>任何一种non-const static对象,不论它是local还是non-local,在多线程环境下,等待某事发生,都会有麻烦。</strong>处理这个麻烦的做法是:在程序的单线程启动阶段手工调用所有reference-returning函数。</p>
+<h3 id="请记住"><a href="#请记住" class="headerlink" title="请记住"></a>请记住</h3><p><strong>为内置类型对象进行手工初始化,因为C++不保证初始化它们。</strong><br><strong>构造函数最好使用成员初值列,而不要在构造函数中使用赋值。初值列列出的成员变量,应与他们在class中声明顺序一致。</strong><br><strong>为避免”跨编译单元之初始化次序”,请以local-static对象代替non-local-static对象。</strong></p>
 
       
 
@@ -267,7 +269,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/30/确定对象被使用前已先被初始化/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/30/条款04-确定对象被使用前已先被初始化/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -280,6 +282,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/03/31/条款05-了解C-默默编写并调用哪些函数/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          条款05: 了解C++默默编写并调用哪些函数
+        
+      </div>
+    </a>
   
   
     <a href="/2019/03/29/分级保护域/" id="article-nav-older" class="article-nav-link-wrap">
@@ -310,7 +321,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#请记住"><span class="toc-number">1.</span> <span class="toc-text">请记住</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -432,11 +443,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Effective C++</a>
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color4">Effective C++</a>
               </li>
             
             <div class="clearfix"></div>
