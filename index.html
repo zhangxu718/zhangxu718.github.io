@@ -63,7 +63,7 @@
 			</ul>
 		</nav>
 		<nav>
-    			总文章数 11
+    			总文章数 12
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -152,6 +152,80 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-条款06-若不想使用编译器自动生成的函数-就该明确拒绝" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/01/条款06-若不想使用编译器自动生成的函数-就该明确拒绝/">条款06: 若不想使用编译器自动生成的函数,就该明确拒绝</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/01/条款06-若不想使用编译器自动生成的函数-就该明确拒绝/" class="archive-article-date">
+  	<time datetime="2019-04-01T12:44:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>通常如果你不希望class支持某一机能,只要不声明对应函数就是了。但这个策略对copy构造函数和copy assignment操作符并不起作用。条款5指出,如果你不声明它们,而尝试调用它们,编译器则会自动为你声明它们。<br><strong>所有编译器生成的函数都是public。</strong>为了阻止这些函数被生成出来,你得自行声明它们。因此你可以把copy构造函数和copy assignment操作符声明为private。这样就可以阻止编译器暗自创建其专属版本同时也阻止了人们调用它。<br><strong>但这个做法并不安全,因为成员函数和友元函数还是可以调用你的private函数。</strong>但是,这要你不定义它们,只是声明,那么有些人不小心调用它们任意一个,都会获得一个连接错误(linkage error)。这一伎俩是如此为大家接受,因而被用在C++ iostream程序库中阻止copy行为。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeForSale</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    ...</span><br><span class="line">    HomeForSale(<span class="keyword">const</span> HomeForSale&amp;);</span><br><span class="line">    HomeForSale&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> HomeForSale&amp;);      <span class="comment">//只有声明</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Effective C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/01/条款06-若不想使用编译器自动生成的函数-就该明确拒绝/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-条款05-了解C-默默编写并调用哪些函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -172,11 +246,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
+        <p>几乎你写的每一个class都会有一个或多个构造函数、一个析构函数、一个copy assignment操作符、一个copy构造函数。如果你没有声明它们,编译器会帮你生成编译器版本的copy构造函数,copy赋值操作符,析构函数。如果你没有声明任何构造函数,编译器还会为你生成默认构造函数。所有这些函数是public且inline的。<br><strong>惟有当这些函数被调用时,它们才会被编译器创建出来。</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Empty</span> &#123;</span> &#125;;</span><br><span class="line">Empty e1;           <span class="comment">//默认构造函数</span></span><br><span class="line">Empty e2 = e1;      <span class="comment">//copy构造函数</span></span><br><span class="line">e2 = e1;            <span class="comment">//copy assignment操作符</span></span><br></pre></td></tr></table></figure></p>
+<p>编译器为你写的这些函数,它们做什么了呢？默认构造函数和析构函数会调用based class和non-static成员变量的构造函数和析构函数。注意,编译器产出的析构函数为non-virtual的,除非这个class的based class的析构函数声明为virtual。<br>
         
       
 
       
-    </div>
+    </p></div>
     <div class="article-info article-info-index">
       
       
@@ -799,81 +875,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/03/23/c-new与malloc区别/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ELF文件解析器-二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/22/ELF文件解析器-二/">ELF文件解析器(二)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/22/ELF文件解析器-二/" class="archive-article-date">
-  	<time datetime="2019-03-22T13:07:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="二、ELF文件解析"><a href="#二、ELF文件解析" class="headerlink" title="二、ELF文件解析"></a>二、ELF文件解析</h2><h3 id="2-1-ELF文件头"><a href="#2-1-ELF文件头" class="headerlink" title="2.1 ELF文件头"></a>2.1 ELF文件头</h3><p>用HexView打开二进制文件,如图所示。<br><img src="/images/ELF解析01.png" alt="ELF解析01"></p>
-<p>前16个字节为e_ident数组内容,解析如下:<br>地址0x0000~0x0003表示该文件为一个ELF文件,0x0004值为2表示该文件是64位文件(内存地址用8字节表示),0x0005值为1表示为<a href="https://baike.baidu.com/item/lsb" target="_blank" rel="noopener">LSB编码(小头编码)</a>。接下来一个字节表示ELF格式版本号,目前使用的最新版本是1。剩下的9个字节为填充字节。<br>
-        
-      
-
-      
-    </p></div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/22/ELF文件解析器-二/">展开全文 >></a>
         </p>
       
 

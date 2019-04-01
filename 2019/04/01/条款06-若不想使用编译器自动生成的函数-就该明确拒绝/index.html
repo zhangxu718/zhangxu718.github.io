@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Effective C++ | Lil&#39; Goldfish</title>
+  <title>条款06: 若不想使用编译器自动生成的函数,就该明确拒绝 | Lil&#39; Goldfish</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="c++ 操作系统 数据挖掘 linux">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lil&#39; Goldfish">
-<meta property="og:url" content="http://yoursite.com/tags/Effective-C/index.html">
+  <meta name="description" content="通常如果你不希望class支持某一机能,只要不声明对应函数就是了。但这个策略对copy构造函数和copy assignment操作符并不起作用。条款5指出,如果你不声明它们,而尝试调用它们,编译器则会自动为你声明它们。所有编译器生成的函数都是public。为了阻止这些函数被生成出来,你得自行声明它们。因此你可以把copy构造函数和copy assignment操作符声明为private。这样就可以">
+<meta name="keywords" content="Effective C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="条款06: 若不想使用编译器自动生成的函数,就该明确拒绝">
+<meta property="og:url" content="http://yoursite.com/2019/04/01/条款06-若不想使用编译器自动生成的函数-就该明确拒绝/index.html">
 <meta property="og:site_name" content="Lil&#39; Goldfish">
-<meta property="og:description" content="c++ 操作系统 数据挖掘 linux">
+<meta property="og:description" content="通常如果你不希望class支持某一机能,只要不声明对应函数就是了。但这个策略对copy构造函数和copy assignment操作符并不起作用。条款5指出,如果你不声明它们,而尝试调用它们,编译器则会自动为你声明它们。所有编译器生成的函数都是public。为了阻止这些函数被生成出来,你得自行声明它们。因此你可以把copy构造函数和copy assignment操作符声明为private。这样就可以">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-01T13:22:59.456Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lil&#39; Goldfish">
-<meta name="twitter:description" content="c++ 操作系统 数据挖掘 linux">
+<meta name="twitter:title" content="条款06: 若不想使用编译器自动生成的函数,就该明确拒绝">
+<meta name="twitter:description" content="通常如果你不希望class支持某一机能,只要不声明对应函数就是了。但这个策略对copy构造函数和copy assignment操作符并不起作用。条款5指出,如果你不声明它们,而尝试调用它们,编译器则会自动为你声明它们。所有编译器生成的函数都是public。为了阻止这些函数被生成出来,你得自行声明它们。因此你可以把copy构造函数和copy assignment操作符声明为private。这样就可以">
   
     <link rel="alternative" href="/atom.xml" title="Lil&#39; Goldfish" type="application/atom+xml">
   
@@ -150,36 +152,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-条款06-若不想使用编译器自动生成的函数-就该明确拒绝" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      条款06: 若不想使用编译器自动生成的函数,就该明确拒绝
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/01/条款06-若不想使用编译器自动生成的函数-就该明确拒绝/" class="archive-article-date">
+
+        
+        <a href="/2019/04/01/条款06-若不想使用编译器自动生成的函数-就该明确拒绝/" class="archive-article-date">
   	<time datetime="2019-04-01T12:44:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-01</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/01/条款06-若不想使用编译器自动生成的函数-就该明确拒绝/">条款06: 若不想使用编译器自动生成的函数,就该明确拒绝</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>通常如果你不希望class支持某一机能,只要不声明对应函数就是了。但这个策略对copy构造函数和copy assignment操作符并不起作用。条款5指出,如果你不声明它们,而尝试调用它们,编译器则会自动为你声明它们。<br><strong>所有编译器生成的函数都是public。</strong>为了阻止这些函数被生成出来,你得自行声明它们。因此你可以把copy构造函数和copy assignment操作符声明为private。这样就可以阻止编译器暗自创建其专属版本同时也阻止了人们调用它。<br><strong>但这个做法并不安全,因为成员函数和友元函数还是可以调用你的private函数。</strong>但是,这要你不定义它们,只是声明,那么有些人不小心调用它们任意一个,都会获得一个连接错误(linkage error)。这一伎俩是如此为大家接受,因而被用在C++ iostream程序库中阻止copy行为。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeForSale</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    ...</span><br><span class="line">    HomeForSale(<span class="keyword">const</span> HomeForSale&amp;);</span><br><span class="line">    HomeForSale&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> HomeForSale&amp;);      <span class="comment">//只有声明</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>函数参数其实并不重要(在本例中),因为这个函数不会实现出来,指定参数名称无意义。<br>有了上述class定义,当用户企图拷贝HomeForSale对象,编译器会阻止它。如果你不慎在成员函数或友元函数之内那么做,连接器会提示你错误。<br><strong>将连接期错误转至编译器是可能的(而且是好事,毕竟错误越早发现越好)</strong>,只要将copy构造函数和copy assignment操作符声明为private就可以,但不是在HomeForSale类中,而是一个专门为了阻止copying动作而设计的based class内。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Uncopyable</span> &#123;</span></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    Uncopyable() &#123; &#125;</span><br><span class="line">    ~Uncopyable() &#123; &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Uncopyable(<span class="keyword">const</span> Uncopyable&amp;);</span><br><span class="line">    Uncopyable&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> Uncopyable&amp;);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeForSale</span>:</span> <span class="keyword">private</span> Uncopyable &#123;</span><br><span class="line">    ...       <span class="comment">//不再声明copy构造函数和copy assignment操作符</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>任何人尝试拷贝HomeForSale对象,编译器便试着生成copy构造函数和copy assignment操作符,这些由编译器生成的函数会尝试调用其base class的对应函数,那会被编译器拒绝,因为其base class的拷贝函数是private。</p>
+<h3 id="请记住"><a href="#请记住" class="headerlink" title="请记住"></a>请记住</h3><p><strong>为驳回编译器暗自提供的机能,可将相应的成员函数声明为private并且不予实现。使用像Uncopyable这样的base class也是一种做法。</strong></p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -191,209 +217,119 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/04/01/条款06-若不想使用编译器自动生成的函数-就该明确拒绝/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/31/条款05-了解C-默默编写并调用哪些函数/" class="archive-article-date">
-  	<time datetime="2019-03-31T14:00:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-31</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/31/条款05-了解C-默默编写并调用哪些函数/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">条款05: 了解C++默默编写并调用哪些函数</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/31/条款05-了解C-默默编写并调用哪些函数/">条款05: 了解C++默默编写并调用哪些函数</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Effective C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#请记住"><span class="toc-number">1.</span> <span class="toc-text">请记住</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/30/条款04-确定对象被使用前已先被初始化/" class="archive-article-date">
-  	<time datetime="2019-03-30T11:44:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-30</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/30/条款04-确定对象被使用前已先被初始化/">条款04: 确定对象被使用前已先被初始化</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Effective C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/27/条款03-尽可能使用const/" class="archive-article-date">
-  	<time datetime="2019-03-27T13:48:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/27/条款03-尽可能使用const/">条款03: 尽可能使用const</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Effective C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/26/条款02-尽量以const-enum-inline替换-define/" class="archive-article-date">
-  	<time datetime="2019-03-26T12:31:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/26/条款02-尽量以const-enum-inline替换-define/">条款02: 尽量以const,enum,inline替换 #define</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Effective C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/25/条款01-视C-为一个语言联邦/" class="archive-article-date">
-  	<time datetime="2019-03-25T00:00:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/25/条款01-视C-为一个语言联邦/">条款01: 视C++为一个语言联邦</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Effective C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -419,9 +355,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
