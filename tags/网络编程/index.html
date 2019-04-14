@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>条款05: 了解C++默默编写并调用哪些函数 | Lil&#39; Goldfish</title>
+  <title>Tag: 网络编程 | Lil&#39; Goldfish</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="几乎你写的每一个class都会有一个或多个构造函数、一个析构函数、一个copy assignment操作符、一个copy构造函数。如果你没有声明它们,编译器会帮你生成编译器版本的copy构造函数,copy赋值操作符,析构函数。如果你没有声明任何构造函数,编译器还会为你生成默认构造函数。所有这些函数是public且inline的。惟有当这些函数被调用时,它们才会被编译器创建出来。1234class">
-<meta name="keywords" content="Effective C++">
-<meta property="og:type" content="article">
-<meta property="og:title" content="条款05: 了解C++默默编写并调用哪些函数">
-<meta property="og:url" content="http://yoursite.com/2019/03/31/条款05-了解C-默默编写并调用哪些函数/index.html">
+  <meta name="description" content="c++ 操作系统 数据挖掘 linux">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lil&#39; Goldfish">
+<meta property="og:url" content="http://yoursite.com/tags/网络编程/index.html">
 <meta property="og:site_name" content="Lil&#39; Goldfish">
-<meta property="og:description" content="几乎你写的每一个class都会有一个或多个构造函数、一个析构函数、一个copy assignment操作符、一个copy构造函数。如果你没有声明它们,编译器会帮你生成编译器版本的copy构造函数,copy赋值操作符,析构函数。如果你没有声明任何构造函数,编译器还会为你生成默认构造函数。所有这些函数是public且inline的。惟有当这些函数被调用时,它们才会被编译器创建出来。1234class">
+<meta property="og:description" content="c++ 操作系统 数据挖掘 linux">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-01T13:22:58.201Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="条款05: 了解C++默默编写并调用哪些函数">
-<meta name="twitter:description" content="几乎你写的每一个class都会有一个或多个构造函数、一个析构函数、一个copy assignment操作符、一个copy构造函数。如果你没有声明它们,编译器会帮你生成编译器版本的copy构造函数,copy赋值操作符,析构函数。如果你没有声明任何构造函数,编译器还会为你生成默认构造函数。所有这些函数是public且inline的。惟有当这些函数被调用时,它们才会被编译器创建出来。1234class">
+<meta name="twitter:title" content="Lil&#39; Goldfish">
+<meta name="twitter:description" content="c++ 操作系统 数据挖掘 linux">
   
     <link rel="alternative" href="/atom.xml" title="Lil&#39; Goldfish" type="application/atom+xml">
   
@@ -152,192 +150,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-条款05-了解C-默默编写并调用哪些函数" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      条款05: 了解C++默默编写并调用哪些函数
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/04/14/SELECT模型解析/" class="archive-article-date">
+  	<time datetime="2019-04-14T02:36:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-14</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/04/14/SELECT模型解析/">SELECT模型解析</a>
     </h1>
   
 
-        
-        <a href="/2019/03/31/条款05-了解C-默默编写并调用哪些函数/" class="archive-article-date">
-  	<time datetime="2019-03-31T14:00:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>几乎你写的每一个class都会有一个或多个构造函数、一个析构函数、一个copy assignment操作符、一个copy构造函数。如果你没有声明它们,编译器会帮你生成编译器版本的copy构造函数,copy赋值操作符,析构函数。如果你没有声明任何构造函数,编译器还会为你生成默认构造函数。所有这些函数是public且inline的。<br><strong>惟有当这些函数被调用时,它们才会被编译器创建出来。</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Empty</span> &#123;</span> &#125;;</span><br><span class="line">Empty e1;           <span class="comment">//默认构造函数</span></span><br><span class="line">Empty e2 = e1;      <span class="comment">//copy构造函数</span></span><br><span class="line">e2 = e1;            <span class="comment">//copy assignment操作符</span></span><br></pre></td></tr></table></figure></p>
-<p>编译器为你写的这些函数,它们做什么了呢？默认构造函数和析构函数会调用based class和non-static成员变量的构造函数和析构函数。注意,编译器产出的析构函数为non-virtual的,除非这个class的based class的析构函数声明为virtual。<br><a id="more"></a><br>至于copy构造函数和copy assignment操作符,编译器创建的版本只会将来源对象的每一个non-static成员变量拷贝到目标对象。考虑一下例子:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NamedObject</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    NamedObject(<span class="built_in">std</span>::<span class="built_in">string</span>&amp; name, <span class="keyword">const</span> T&amp; value);</span><br><span class="line">    ...</span><br><span class="line">prviate:</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span>&amp; nameVaule;</span><br><span class="line">    <span class="keyword">const</span> T objectValue;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">newDog</span><span class="params">(<span class="string">"Persephone"</span>)</span></span>;</span><br><span class="line"><span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">oldDog</span><span class="params">(<span class="string">"Satch"</span>)</span></span>;</span><br><span class="line">NamedObject&lt;<span class="keyword">int</span>&gt; p(newDog,<span class="number">2</span>);</span><br><span class="line">NamedObject&lt;<span class="keyword">int</span>&gt; s(oldDog,<span class="number">36</span>);</span><br><span class="line">p = s;</span><br></pre></td></tr></table></figure></p>
-<p>C++会拒绝编译最后一行赋值动作。C++并不允许让引用改指向不用对象。如果你打算在一个内含引用成员的class内支持赋值操作,你必须自己定义copy赋值操作符。面对内含const成员的class,编译器的反应是一样的。更改const成员是不合法的,所以编译器不知道如何在它自己生成的赋值函数内面对它们。<br>最后还有一种情况,如果某个based class将copy assignment操作符声明为private,编译器会拒绝为其derived classes生成copy赋值操作符。</p>
-<h3 id="请记住"><a href="#请记住" class="headerlink" title="请记住"></a>请记住</h3><p><strong>编译器可以暗自为class创建默认构造函数,copy构造函数,copy assignment操作符,析构函数。</strong></p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Effective C++</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">网络编程</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/31/条款05-了解C-默默编写并调用哪些函数/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/04/01/条款06-若不想使用编译器自动生成的函数-就该明确拒绝/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          条款06: 若不想使用编译器自动生成的函数,就该明确拒绝
-        
-      </div>
-    </a>
   
   
-    <a href="/2019/03/30/条款04-确定对象被使用前已先被初始化/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">条款04: 确定对象被使用前已先被初始化</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#请记住"><span class="toc-number">1.</span> <span class="toc-text">请记住</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -363,9 +229,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

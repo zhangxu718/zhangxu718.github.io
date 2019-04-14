@@ -63,7 +63,7 @@
 			</ul>
 		</nav>
 		<nav>
-    			总文章数 12
+    			总文章数 13
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -151,6 +151,81 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-c-new与malloc区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/23/c-new与malloc区别/">c++new与malloc区别</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/23/c-new与malloc区别/" class="archive-article-date">
+  	<time datetime="2019-03-23T11:09:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-返回类型安全性"><a href="#1-返回类型安全性" class="headerlink" title="1.返回类型安全性"></a>1.返回类型安全性</h3><p>new操作符内存分配成功时,返回对象类型的指针,类型与对象匹配。故new是符合<a href="https://baike.baidu.com/item/%E7%B1%BB%E5%9E%8B%E5%AE%89%E5%85%A8" target="_blank" rel="noopener">类型安全</a>的。<br>malloc分配内存成功时,返回void*,需要通过强制类型转换转换成我们需要的类型。</p>
+<h3 id="2-内存分配失败时的返回值"><a href="#2-内存分配失败时的返回值" class="headerlink" title="2.内存分配失败时的返回值"></a>2.内存分配失败时的返回值</h3><p>new分配内存失败时,会抛出bad_alloc异常,不会返回NULL,而malloc分配失败时会返回NULL。所以下面实例的代码是不会得到用户想要的结果。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typename</span> *p = <span class="keyword">new</span> <span class="keyword">typename</span>();</span><br><span class="line"><span class="keyword">if</span>(p == <span class="literal">NULL</span>)</span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/23/c-new与malloc区别/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-ELF文件解析器-二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -410,11 +485,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Effective C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Effective C++</a>
+                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
               </li>
             
             <div class="clearfix"></div>
