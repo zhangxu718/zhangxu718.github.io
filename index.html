@@ -63,7 +63,7 @@
 			</ul>
 		</nav>
 		<nav>
-    			总文章数 13
+    			总文章数 14
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -151,6 +151,82 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-tcp粘包分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/16/tcp粘包分析/">tcp粘包分析</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/16/tcp粘包分析/" class="archive-article-date">
+  	<time datetime="2019-04-16T01:55:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>正在做一个C++实现的并发网络通信引擎,遇到粘包问题,查了一些资料记录一下:</p>
+<h3 id="一-两个简单概念长连接与短连接："><a href="#一-两个简单概念长连接与短连接：" class="headerlink" title="一 .两个简单概念长连接与短连接："></a>一 .两个简单概念长连接与短连接：</h3><p>1.长连接<br>    Client方与Server方先建立通讯连接，连接建立后不断开， 然后再进行报文发送和接收。<br>2.短连接<br>    Client方与Server每进行一次报文收发交易时才进行通讯连接，交易完毕后立即断开连接。此种方式常用于一点对多点通讯，比如多个Client连接一个Server.</p>
+<h3 id="二-什么时候需要考虑粘包问题"><a href="#二-什么时候需要考虑粘包问题" class="headerlink" title="二 .什么时候需要考虑粘包问题?"></a>二 .什么时候需要考虑粘包问题?</h3><p>1:如果利用tcp每次发送数据，就与对方建立连接，然后双方发送完一段数据后，就关闭连接，这样就不会出现粘包问题（因为只有一种包结构,类似于http协议）。关闭连接主要要双方都发送close连接（参考tcp关闭协议）。如：A需要发送一段字符串给B，那么A与B建立连接，然后发送双方都默认好的协议字符如”hello give me sth abour yourself”，然后B收到报文后，就将缓冲区数据接收,然后关闭连接，这样粘包问题不用考虑到，因为大家都知道是发送一段字符。<br>2：如果发送数据无结构，如文件传输，这样发送方只管发送，接收方只管接收存储就ok，也不用考虑粘包<br>3：如果双方建立连接，需要在连接后一段时间内发送不同结构数据，如连接后，有好几种结构：<br> 1)”hello give me sth abour yourself”<br> 2)”Don’t give me sth abour yourself”<br>   那这样的话，如果发送方连续发送这个两个包出去，接收方一次接收可能会是”hello give me sth abour yourselfDon’t give me sth abour yourself” 这样接收方就傻了，到底是要干嘛？不知道，因为协议没有规定这么诡异的字符串，所以要处理把它分包，怎么分也需要双方组织一个比较好的包结构，所以一般可能会在头加一个数据长度之类的包，以确保接收。<br>
+        
+      
+
+      
+    </p></div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">网络编程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/16/tcp粘包分析/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-SELECT模型解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -829,82 +905,6 @@
 
 
   
-    <article id="post-条款01-视C-为一个语言联邦" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/25/条款01-视C-为一个语言联邦/">条款01: 视C++为一个语言联邦</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/25/条款01-视C-为一个语言联邦/" class="archive-article-date">
-  	<time datetime="2019-03-25T00:00:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一开始,C++对于C来说仅附加一些面带对象特性。C++最初的名称<strong>C with Classes</strong>就反应了这一关系。<br>但如今的C++已经是个<strong>多重范型编程语言(multiparadigm programming language)</strong>, 一个同时支持<strong>过程式(procedural)</strong>、 <strong>面向对象编程(object-oriented)</strong>、 <strong>函数式(functional)</strong>、 <strong>泛型编程(generic)</strong>、 <strong>元编程形式(metaprogramming)</strong>的语言。我们将如何理解这门语言呢？<br>最简单的方法将C++视为<strong>一个由相关语言组成的联邦而非单一语言</strong>,在某一次语言中,各种守则都倾向简单易懂,并且容易记住。为了理解C++,我们需要理解以下4个次语言。</p>
-<h3 id="C"><a href="#C" class="headerlink" title="C"></a>C</h3><p>C++仍是以C为基础。区块、语句、预处理器、内置数据类型、数组、指针都来源于C,很多时候C++对问题的解法就是较高级的C解法。但当你以C++内的C工作时,高效编程守则照应出C的局限:没有异常、没有重载…</p>
-<h3 id="Object-Oriented-C"><a href="#Object-Oriented-C" class="headerlink" title="Object-Oriented C++"></a>Object-Oriented C++</h3>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Effective C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/25/条款01-视C-为一个语言联邦/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1012,11 +1012,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Effective C++</a>
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color4">Effective C++</a>
               </li>
              
               <li class="article-tag-list-item">
