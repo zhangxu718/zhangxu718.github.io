@@ -6,18 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Linux | Lil&#39; Goldfish</title>
+  <title>编译防火墙——C++的Pimpl解析 | Lil&#39; Goldfish</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="c++ 操作系统 数据挖掘 linux">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lil&#39; Goldfish">
-<meta property="og:url" content="http://yoursite.com/tags/Linux/index.html">
+  <meta name="description" content="Pimpl(pointer to implementation, 指向实现的指针)是一种常用的，用来对“类的接口与实现”进行解耦的方法。这个技巧可以避免在头文件中暴露私有细节(见下图1)，因此是促进API接口与实现保持完全分离的重要机制。但是Pimpl并不是严格意义上的设计模式(它是受制于C++特定限制的变通方案)，这种惯用法可以看作桥接设计模式的一种特例。图1: Pimpl惯用法，这里的公有类拥">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编译防火墙——C++的Pimpl解析">
+<meta property="og:url" content="http://yoursite.com/2019/04/16/编译防火墙——C-的Pimpl解析/index.html">
 <meta property="og:site_name" content="Lil&#39; Goldfish">
-<meta property="og:description" content="c++ 操作系统 数据挖掘 linux">
+<meta property="og:description" content="Pimpl(pointer to implementation, 指向实现的指针)是一种常用的，用来对“类的接口与实现”进行解耦的方法。这个技巧可以避免在头文件中暴露私有细节(见下图1)，因此是促进API接口与实现保持完全分离的重要机制。但是Pimpl并不是严格意义上的设计模式(它是受制于C++特定限制的变通方案)，这种惯用法可以看作桥接设计模式的一种特例。图1: Pimpl惯用法，这里的公有类拥">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/images/设计模式pimpl.png">
+<meta property="og:image" content="http://yoursite.com/images/编译防火墙pimpl.png">
+<meta property="og:updated_time" content="2019-04-16T08:21:45.957Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lil&#39; Goldfish">
-<meta name="twitter:description" content="c++ 操作系统 数据挖掘 linux">
+<meta name="twitter:title" content="编译防火墙——C++的Pimpl解析">
+<meta name="twitter:description" content="Pimpl(pointer to implementation, 指向实现的指针)是一种常用的，用来对“类的接口与实现”进行解耦的方法。这个技巧可以避免在头文件中暴露私有细节(见下图1)，因此是促进API接口与实现保持完全分离的重要机制。但是Pimpl并不是严格意义上的设计模式(它是受制于C++特定限制的变通方案)，这种惯用法可以看作桥接设计模式的一种特例。图1: Pimpl惯用法，这里的公有类拥">
+<meta name="twitter:image" content="http://yoursite.com/images/设计模式pimpl.png">
   
     <link rel="alternative" href="/atom.xml" title="Lil&#39; Goldfish" type="application/atom+xml">
   
@@ -150,98 +155,192 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-编译防火墙——C-的Pimpl解析" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/22/ELF文件解析器-二/" class="archive-article-date">
-  	<time datetime="2019-03-22T13:07:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/22/ELF文件解析器-二/">ELF文件解析器(二)</a>
+    <h1 class="article-title" itemprop="name">
+      编译防火墙——C++的Pimpl解析
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/04/16/编译防火墙——C-的Pimpl解析/" class="archive-article-date">
+  	<time datetime="2019-04-16T07:59:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Pimpl(pointer to implementation, 指向实现的指针)是一种常用的，用来对“类的接口与实现”进行解耦的方法。这个技巧可以避免在头文件中暴露私有细节(见下图1)，因此是促进API接口与实现保持完全分离的重要机制。但是Pimpl并不是严格意义上的设计模式(它是受制于C++特定限制的变通方案)，这种惯用法可以看作桥接设计模式的一种特例。<br><img src="/images/设计模式pimpl.png" alt="Pimpl"><br>图1: Pimpl惯用法，这里的公有类拥有一个私有指针，该指针指向隐藏的实现类</p>
+<p>在类中使用Pimpl惯用法，具有如下优点：<br><strong>1.降低耦合</strong><br><strong>2.信息隐藏</strong><br><strong>3.降低编译依赖，提高编译速度</strong><br><strong>4.接口与实现分离</strong><br><a id="more"></a><br>为了实现Pimpl，我们先来看一种普通的类的设计方法。<br>假如我们要设计一书籍类Book，Book包含目录属性，并提供打印书籍信息的对外接口，Book设计如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span>  m_Contents;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>Book的使用者只需要知道print()接口，便可以使用Book类，看起来一切都很美好。<br>然而，当某一天，发现Book需要增加一标题属性，对Book类的修改如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span>  m_Contents;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span>  m_Title;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>虽然使用print()接口仍然可以直接输出书籍的信息，但是Book类的使用者却不得不重新编译所有包含Book类头文件的代码。<br>为了隐藏Book类的实现细节，实现接口与实现的真正分离，可以使用Pimpl方法。<br>我们依然对Book类提供相同的接口，但Book类中不再包含原有的数据成员，其所有操作都由BookImpl类实现。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* public.h */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> PUBLIC_H_INCLUDED</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PUBLIC_H_INCLUDED</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  Book();</span><br><span class="line">  ~Book();</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">BookImpl</span>;</span>  <span class="comment">// Book实现类的前置声明</span></span><br><span class="line">  BookImpl* pimpl;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>在对外的头文件public.h中，只包含Book类的外部接口，将真正的实现细节被封装到BookImpl类。为了不对外暴露BookImpl类，将其声明为Book类的内嵌类，并声明为private。</p>
+<p>BookImpl类的头文件如下。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* private.h */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> PRIVATE_H_INCLUDED</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PRIVATE_H_INCLUDED</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"public.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span>:</span>:BookImpl</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span>  m_Contents;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span>  m_Title;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>private.h并不需要提供给Book类的使用者，因此，如果往后需要重新设计书籍类的属性，外界对此一无所知，从而保持接口的不变性，并减少了文件之间的编译依赖关系。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* book.cpp */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"private.h"</span>  <span class="comment">// 我们需要调用BookImpl类的成员函数，</span></span></span><br><span class="line">                      <span class="comment">// 所以要包含BookImpl的定义头文件</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"public.h"</span>  <span class="comment">// 我们正在实现Book类，所以要包含Book类</span></span></span><br><span class="line">                     <span class="comment">// 的头文件</span></span><br><span class="line"></span><br><span class="line">Book::Book()</span><br><span class="line">&#123;</span><br><span class="line">  pimpl = <span class="keyword">new</span> BookImpl();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Book::~Book()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">delete</span> pimpl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Book::print()</span><br><span class="line">&#123;</span><br><span class="line">  pimpl-&gt;print();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* BookImpl类的实现函数 */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Book::BookImpl::print()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"print from BookImpl"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用Book类的接口的方法如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* main.cpp */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"public.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Book book;</span><br><span class="line">    book.print();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>像Book类这样使用Pimpl的类，往往被称为handle class，BookImpl类作为实现类，被称为implementation class。</p>
+<p>为简单实现起见，Book类省略了复制构造函数和复制赋值函数。在实际应用中，一般有两种可选方案解决Book的复制和赋值的语义问题。<br><strong>(1) 禁止复制类</strong><br>如果不打算让用户创建对象的副本，那么可以将对象声明为不可复制的。可以将复制构造函数和复制赋值函数声明为私有的，这样在复制或者赋值时就会产生编译错误。<br>以下代码通过声明私有的复制构造函数和复制赋值函数来使得对象不可以复制，不需要修改相关的.cpp文件。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* public.h */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> PUBLIC_H_INCLUDED</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PUBLIC_H_INCLUDED</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  Book();</span><br><span class="line">  ~Book();</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="comment">// 禁止复制类</span></span><br><span class="line">  Book(<span class="keyword">const</span> Book&amp;);</span><br><span class="line">  <span class="keyword">const</span> Book &amp;<span class="keyword">operator</span> = (<span class="keyword">const</span> Book &amp;);</span><br><span class="line"></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">BookImpl</span>;</span>  <span class="comment">// Book实现类的前置声明</span></span><br><span class="line">  BookImpl* pimpl;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure></p>
+<p><strong>(2) 显示定义复制语义</strong><br>如果希望用户能够复制采用Pimpl的对象，就应该声明并定义自己的复制构造函数和复制赋值函数。它们可以执行对象的深复制，即<strong>创建对象的副本，而非复制指针。</strong></p>
+<p>Pimpl惯用法最主要的缺点是，必须为你创建的每个对象分配并释放实现对象，这使对象增加了一个指针，handle class成员函数的每次调用都必须通过implementation class，这会增加一层间接性。在实际中你需要对这些开销进行权衡。<br>另外，采用了Pimpl的对象，编译器将不再能够捕获const方法中对成员变量的修改。这是由于成员变量现在存在于独立的对象中，编译器仅检查const方法中的pimpl指针是否发生变化，而不会检查pimpl指向的任何成员。<br><img src="/images/编译防火墙pimpl.png" alt="编译防火墙"><br>图2: Pimpl作为编译防火墙</p>
+<p>由于Pimpl解除了接口与实现之间的耦合关系，从而降低文件间的编译依赖关系，Pimpl也因此常被称为“编译期防火墙“ 。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/04/16/编译防火墙——C-的Pimpl解析/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/22/ELF文件解析器/" class="archive-article-date">
-  	<time datetime="2019-03-22T02:15:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/16/tcp粘包分析/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">tcp粘包分析</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/22/ELF文件解析器/">ELF文件解析器(一)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -267,9 +366,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

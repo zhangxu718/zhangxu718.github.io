@@ -63,7 +63,7 @@
 			</ul>
 		</nav>
 		<nav>
-    			总文章数 14
+    			总文章数 15
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -151,6 +151,81 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-CRT-Startup-code" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/25/CRT-Startup-code/">CRT Startup code</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/25/CRT-Startup-code/" class="archive-article-date">
+  	<time datetime="2019-03-25T12:49:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="C-程序进入main-之前做了哪些操作-如何进入main-执行完之后又做什么？"><a href="#C-程序进入main-之前做了哪些操作-如何进入main-执行完之后又做什么？" class="headerlink" title="C++程序进入main()之前做了哪些操作,如何进入main(),执行完之后又做什么？"></a>C++程序进入main()之前做了哪些操作,如何进入main(),执行完之后又做什么？</h3><p><strong>1.</strong> 操作系统创建进程后,把控制权交给程序的入口函数 (gcc -e (_startEntryPoint)), vc6.0下为 mainCRTStartup。<br><strong>2.</strong> 入口函数对运行库和程序运行环境进行初始化,包括Heap,I/O,线程,global、static变量的constructor等。<br><strong>3.</strong> 这是才会调用main函数,开始执行程序主体。<br><strong>4.</strong> 执行完main函数,返回入口函数,进行清理工作,包括Heap销毁,I/O关闭,global、static变量的析构,之后等待系统调用结束进程。</p>
+<h3 id="下面分析默认为windows静态链接过程"><a href="#下面分析默认为windows静态链接过程" class="headerlink" title="下面分析默认为windows静态链接过程"></a>下面分析默认为windows静态链接过程</h3><p><strong>1.</strong> 程序执行前装载器会把用户的命令行参数和环境变量入栈,接着操作系统转移控制权给mainCRTStartup入口函数。<br>用户的命令行参数:int main(int argc, char *argv[])<br>环境变量:系统公用数据, 系统搜索路径等。<br>
+        
+      
+
+      
+    </p></div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/25/CRT-Startup-code/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-条款01-视C-为一个语言联邦" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -566,6 +641,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Effective C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
