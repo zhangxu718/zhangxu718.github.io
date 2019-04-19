@@ -63,7 +63,7 @@
 			</ul>
 		</nav>
 		<nav>
-    			总文章数 15
+    			总文章数 16
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -151,6 +151,82 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-条款02-尽量以const-enum-inline替换-define" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/26/条款02-尽量以const-enum-inline替换-define/">条款02: 尽量以const,enum,inline替换 #define</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/26/条款02-尽量以const-enum-inline替换-define/" class="archive-article-date">
+  	<time datetime="2019-03-26T12:31:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>此条款或许可以改为<strong>“宁以编译器替换预处理器”</strong>比较好,因为或许#define不被视为语言的一部分。当你做出如下宏定义:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ASPECT_RATIO 1.653</span></span><br></pre></td></tr></table></figure></p>
+<p>该名称ASPECT_RATIO或许从未被编译器看到,也许编译器开始处理源码之前它就被预处理器移走了。于是记号名称ASPECT_RATIO可能从未进入记号表内。<strong>于是当你运用此常量但获得一个编译错误信息时,可能会产生困惑,因为这个错误信息也许会提到1.653而不是ASPECT_RATIO</strong>。于是你将因为追踪它而浪费时间。<br><strong>解决之道是以一个常量来替换上述的宏</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> AspectRatio = <span class="number">1.653</span>;</span><br></pre></td></tr></table></figure></p>
+<p>作为语言常量,AspectRatio肯定会被编译器看到,当然就会进入记号表内。当我们以常量来替换#define时,有两种特殊情况。<strong>第一是定义常量指针</strong>。<br><strong>指针常量:</strong>指针本身为常量,也就是指针本身不可改变,但指针所指之物可以改变;<br>
+        
+      
+
+      
+    </p></div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Effective C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/26/条款02-尽量以const-enum-inline替换-define/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-CRT-Startup-code" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -644,11 +720,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
             
             <div class="clearfix"></div>

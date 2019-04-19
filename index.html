@@ -63,7 +63,7 @@
 			</ul>
 		</nav>
 		<nav>
-    			总文章数 15
+    			总文章数 16
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -151,6 +151,84 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-设计模式之单例模式-Singleton" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/19/设计模式之单例模式-Singleton/">设计模式之单例模式(Singleton)</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/19/设计模式之单例模式-Singleton/" class="archive-article-date">
+  	<time datetime="2019-04-19T14:08:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>C++单例模式也称为单件模式、单子模式。使用单例模式，保证一个类仅有一个实例，并提供一个访问它的全局访问点，该实例被所有程序模块共享。有很多地方需要这样的功能模块，如系统的日志输出等。</p>
+<p>单例模式有许多种实现方法，</p>
+<p>a. 懒汉式：使用的时候才创建，多线程访问的时候线程不安全(双检锁)<br>b. 饿汉式：类文件加载的时候已经创建好了对象，如果对象一直没有使用，则类对象浪费空间</p>
+<p>特点与选择：</p>
+<p>如果要进行线程同步，访问量比较大，或者可能访问的线程比较多时，采用饿汉实现，可以实现更好的性能。这是以空间换时间。<br>在访问量较小时，采用懒汉实现。这是以时间换空间。<br>在C++中，甚至可以直接用一个全局变量做到这一点，但这样的代码显得很不优雅。定义一个单例类，使用类的私有静态指针变量指向类的唯一实例，并用一个公有静态方法获取该实例。如下面的类定义：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//懒汉式 （创建的时候采取new实例）以时间换取空间，线程不安全</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CSingleton</span></span></span><br><span class="line"><span class="class">&#123;</span>  </span><br><span class="line">	<span class="comment">// 其它成员  </span></span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">	<span class="function"><span class="keyword">static</span> CSingleton * <span class="title">GetInstance</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function">	</span>&#123;  </span><br><span class="line">		<span class="keyword">if</span> (m_pInstance == <span class="literal">NULL</span>)  </span><br><span class="line">			m_pInstance = <span class="keyword">new</span> CSingleton();</span><br><span class="line">		<span class="keyword">return</span> m_pInstance;  </span><br><span class="line">	&#125;  </span><br><span class="line">	<span class="comment">//在析构函数中析构对象是一种错误的做法,会调用,是一个死递归,正确做法是创建一个嵌套的析构类</span></span><br><span class="line">	<span class="comment">/*~CSingleton()</span></span><br><span class="line"><span class="comment">	&#123;</span></span><br><span class="line"><span class="comment">		if( m_pInstance != NULL)</span></span><br><span class="line"><span class="comment">		&#123;</span></span><br><span class="line"><span class="comment">			delete  m_pInstance;</span></span><br><span class="line"><span class="comment">			 m_pInstance = NULL;</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">	</span></span><br><span class="line"><span class="comment">		cout &lt;&lt; "~CSingleton()" &lt;&lt; endl;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"><span class="keyword">private</span>:  </span><br><span class="line">	CSingleton()&#123;&#125;;  </span><br><span class="line">	<span class="keyword">static</span> CSingleton * m_pInstance;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/19/设计模式之单例模式-Singleton/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-编译防火墙——C-的Pimpl解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -829,82 +907,6 @@
 
 
   
-    <article id="post-条款02-尽量以const-enum-inline替换-define" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/26/条款02-尽量以const-enum-inline替换-define/">条款02: 尽量以const,enum,inline替换 #define</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/26/条款02-尽量以const-enum-inline替换-define/" class="archive-article-date">
-  	<time datetime="2019-03-26T12:31:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>此条款或许可以改为<strong>“宁以编译器替换预处理器”</strong>比较好,因为或许#define不被视为语言的一部分。当你做出如下宏定义:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ASPECT_RATIO 1.653</span></span><br></pre></td></tr></table></figure></p>
-<p>该名称ASPECT_RATIO或许从未被编译器看到,也许编译器开始处理源码之前它就被预处理器移走了。于是记号名称ASPECT_RATIO可能从未进入记号表内。<strong>于是当你运用此常量但获得一个编译错误信息时,可能会产生困惑,因为这个错误信息也许会提到1.653而不是ASPECT_RATIO</strong>。于是你将因为追踪它而浪费时间。<br><strong>解决之道是以一个常量来替换上述的宏</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> AspectRatio = <span class="number">1.653</span>;</span><br></pre></td></tr></table></figure></p>
-<p>作为语言常量,AspectRatio肯定会被编译器看到,当然就会进入记号表内。当我们以常量来替换#define时,有两种特殊情况。<strong>第一是定义常量指针</strong>。<br><strong>指针常量:</strong>指针本身为常量,也就是指针本身不可改变,但指针所指之物可以改变;<br>
-        
-      
-
-      
-    </p></div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Effective C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/26/条款02-尽量以const-enum-inline替换-define/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1020,11 +1022,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
             
             <div class="clearfix"></div>
