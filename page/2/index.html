@@ -63,7 +63,7 @@
 			</ul>
 		</nav>
 		<nav>
-    			总文章数 16
+    			总文章数 19
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -151,6 +151,232 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-分级保护域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/29/分级保护域/">分级保护域</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/29/分级保护域/" class="archive-article-date">
+  	<time datetime="2019-03-29T13:37:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在计算机科学中, 分级保护域（hierarchical protection domains)经常被叫作保护环（Protection Rings），又称环型保护（Rings Protection）、CPU环（CPU Rings），简称Rings。这是一种用来在发生故障时保护数据和功能，提升容错度，避免恶意操作 ，提升计算机安全的设计方式。这是一种与能力基础安全（capability-based security）完全相反的方式。</p>
+<p>电脑操作系统提供不同的资源访问级别。在计算机体系结构中，Rings是由两个或更多的特权态组成。在一些硬件或者微代码级别上提供不同特权态模式的CPU架构上，保护环通常都是硬件强制的。Rings是从最高特权级（通常被叫作0级）到最低特权级（通常对应最大的数字）排列的。在大多数操作系统中，Ring 0拥有最高特权，并且可以和最多的硬件直接交互（比如CPU，内存）。</p>
+<p>Rings之间的特殊门是被提供用来允许外层Ring在预定义的方式内访问内层Ring的资源用的，内层Ring可以随便使用外层Ring的资源。正确使用Rings间的门可以阻止某个Ring或者特权级的程序故意滥用其他程序的资源，提升安全性。例如，某个间谍软件作为一个在Ring 3运行的用户程序，它在不通知用户的时候打开摄像头应该会被阻止，因为访问硬件需要使用被驱动程序保留的Ring 1的方法。浏览器一类在高Ring级别运行的程序必须请求权限才能访问网络，也就是受低Ring级别限制的资源。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/29/分级保护域/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-条款03-尽可能使用const" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/27/条款03-尽可能使用const/">条款03: 尽可能使用const</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/27/条款03-尽可能使用const/" class="archive-article-date">
+  	<time datetime="2019-03-27T13:48:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>const可以在classes外部修饰global或namespace作用域中的常量,或修饰文件、函数、或区块作用域内中被修饰为static的对象。你也可以修饰classes内的static或non-static成员变量。面对指针,你可以有如下做法:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> greeting[] = <span class="string">"Hello"</span>;</span><br><span class="line"><span class="keyword">char</span> *p = greeting;             <span class="comment">//non-const data, non-const pointer</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span>* p = greeting;       <span class="comment">//const data,指针指向的对象为const</span></span><br><span class="line"><span class="keyword">char</span>* <span class="keyword">const</span> p = greeting;       <span class="comment">//const pointer,指针本身为const</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span>* <span class="keyword">const</span> p = greeting; <span class="comment">//const data, const pointer</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>如果关键字const出现在星号左边,表示被指物为常量,如果出现在星号右边,表示指针自身是常量,如果出现在星号两边,表示指针和被指物都为常量。</strong><br>对于指针所指物为常量,有些人会把const写在类型前,有些人会写在类型后,所以一下两种写法皆表示指针所指物为常量。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span>* p = greeting;</span><br><span class="line"><span class="keyword">char</span> <span class="keyword">const</span> *p = greeting;</span><br></pre></td></tr></table></figure></p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Effective C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/27/条款03-尽可能使用const/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-enum-hack" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/27/enum-hack/">enum hack</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/27/enum-hack/" class="archive-article-date">
+  	<time datetime="2019-03-27T10:39:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在Effective C++中条款2:<strong>尽量以const,enum,inline来代替#define</strong>,如果你需要一个类内专属常量,可以将其声明为class内的成员 <strong>static const int num = 5;注意 这是声明,而不是定义。</strong>做法仅限作用在整数类型且不取它的地址时才可以通过编译。但假如你确实是如此做的,但你的编译器却错误的不允许你这样做,可以改用<strong>the enum hack</strong>做法。<br><strong>enume hack的理论基础是:一个属于枚举类型的数值可权充ints被使用</strong>,举个例子:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GamePlayer</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">enum</span> &#123; NumTurns = <span class="number">5</span>&#125;;     <span class="comment">//令NumTurns成为5的一个记号名称</span></span><br><span class="line">    <span class="keyword">int</span> scores[NumTurns]; </span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>基于数个理由enum hack值得我们认识。第一,<strong>enum hack的行为某方面说比较像#define而不是const,有时这正是你需要的。</strong>例如:取const的地址合法,取enum的地址就不合法,与#define相同。如果你不想让别人获得一个指针或者引用指向你的某个整数常量,enum可以帮助你实现这个约束。此外,不够优秀的编译器可能会设定另外的空间来存储”整数型const对象”,但enums和#defines绝不会导致这样的内存分配。第二,<strong>认识enum hack完全是为了实用主义。</strong>事实上,”enum hack”是模版元编程的基础技术。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/27/enum-hack/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-条款02-尽量以const-enum-inline替换-define" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -704,6 +930,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
@@ -712,19 +942,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Effective C++</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
               </li>
             
             <div class="clearfix"></div>
