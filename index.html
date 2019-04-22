@@ -63,7 +63,7 @@
 			</ul>
 		</nav>
 		<nav>
-    			总文章数 19
+    			总文章数 20
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -151,6 +151,83 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-大话Select-Poll-Epoll" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/22/大话Select-Poll-Epoll/">大话Select Poll Epoll</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/22/大话Select-Poll-Epoll/" class="archive-article-date">
+  	<time datetime="2019-04-22T14:17:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>提到select、poll、epoll相信大家都耳熟能详了，三个都是IO多路复用的机制，可以监视多个描述符的读/写等事件，一旦某个描述符就绪（一般是读或者写事件发生了），就能够将发生的事件通知给关心的应用程序去处理该事件。本质上，select、poll、epoll本质上都是同步I/O，相信大家都读过Richard Stevens的经典书籍UNP（UNIX:registered: Network Programming），书中给出了5种IO模型：</p>
+<p>[1] blocking IO - 阻塞IO<br>[2] nonblocking IO - 非阻塞IO<br>[3] IO multiplexing - IO多路复用<br>[4] signal driven IO - 信号驱动IO<br>[5] asynchronous IO - 异步IO</p>
+<p>其中前面4种IO都可以归类为synchronous IO - 同步IO，在介绍select、poll、epoll之前，首先介绍一下这几种IO模型，signal driven IO平时用的比较少，这里就不介绍了。</p>
+<h3 id="1-IO-同步、异步、阻塞、非阻塞"><a href="#1-IO-同步、异步、阻塞、非阻塞" class="headerlink" title="1.IO - 同步、异步、阻塞、非阻塞"></a>1.IO - 同步、异步、阻塞、非阻塞</h3><p>下面以network IO中的read读操作为切入点，来讲述同步（synchronous） IO和异步（asynchronous） IO、阻塞（blocking） IO和非阻塞（non-blocking）IO的异同。一般情况下，一次网络IO读操作会涉及两个系统对象：(1) 用户进程(线程)Process；(2)内核对象kernel，两个处理阶段：<br><strong>[1] Waiting for the data to be ready - 等待数据准备好</strong><br><strong>[2] Copying the data from the kernel to the process - 将数据从内核空间的buffer拷贝到用户空间进程的buffer</strong><br>IO模型的异同点就是区分在这两个系统对象、两个处理阶段的不同上。<br>
+        
+      
+
+      
+    </p></div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">网络编程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/22/大话Select-Poll-Epoll/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-C-静态成员和静态成员函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -806,81 +883,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/03/31/条款05-了解C-默默编写并调用哪些函数/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-条款04-确定对象被使用前已先被初始化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/30/条款04-确定对象被使用前已先被初始化/">条款04: 确定对象被使用前已先被初始化</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/30/条款04-确定对象被使用前已先被初始化/" class="archive-article-date">
-  	<time datetime="2019-03-30T11:44:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>永远在使用对象之前将它初始化。对于无任何成员的内置类型,你必须手工完成此事。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span>* cstr = <span class="string">"A C-style-string"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> d;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; d;      <span class="comment">//以input stream方式完成初始化</span></span><br></pre></td></tr></table></figure></p>
-<p>除内置类型之外的任何东西,初始化的责任落在<strong>构造函数</strong>身上。规则:<strong>确保构造函数将对象的每一个成员都初始化。</strong><br>这个规则很容易奉行,重要的是别混淆了<strong>赋值(assignment)和初始化(initialization)</strong>考虑以下代码:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PhoneNumber</span> &#123;</span> ... &#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ABEntry</span> &#123;</span>           <span class="comment">//Address Book Entry</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ABEntry(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; name,<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; address,</span><br><span class="line">            <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">list</span>&lt;PhoneNumber&gt;&amp; phones);</span><br><span class="line">prviate:</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> theName;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> theAddress;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">list</span>&lt;PhoneNumber&gt; thePhones;</span><br><span class="line">    <span class="keyword">int</span> numTimesConsulted;</span><br><span class="line">&#125;;</span><br><span class="line">ABEntry::ABEntry(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; name,<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; address,</span><br><span class="line">                 <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">list</span>&lt;PhoneNumber&gt;&amp; phones)</span><br><span class="line">&#123;</span><br><span class="line">    theName = name;</span><br><span class="line">    theAddress = address;</span><br><span class="line">    thePhones = phones;</span><br><span class="line">    numTimesConsulted = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Effective C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/30/条款04-确定对象被使用前已先被初始化/">展开全文 >></a>
         </p>
       
 
