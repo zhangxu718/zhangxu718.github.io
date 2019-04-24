@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>SELECT模型解析 | Lil&#39; Goldfish</title>
+  <title>Lil&#39; Goldfish</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Select的函数格式：int select(int maxfdp,fd_set readfds,fd_set writefds,fd_set errorfds,struct timevaltimeout);先说明两个结构体：第一，struct fd_set可以理解为一个集合，这个集合中存放的是文件描述符(filedescriptor)，即文件句柄，这可以是我们所说的普通意义的文件，当然Unix下">
-<meta name="keywords" content="网络编程">
-<meta property="og:type" content="article">
-<meta property="og:title" content="SELECT模型解析">
-<meta property="og:url" content="http://yoursite.com/2019/04/14/SELECT模型解析/index.html">
+  <meta name="description" content="c++ 操作系统 数据挖掘 linux">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lil&#39; Goldfish">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="Lil&#39; Goldfish">
-<meta property="og:description" content="Select的函数格式：int select(int maxfdp,fd_set readfds,fd_set writefds,fd_set errorfds,struct timevaltimeout);先说明两个结构体：第一，struct fd_set可以理解为一个集合，这个集合中存放的是文件描述符(filedescriptor)，即文件句柄，这可以是我们所说的普通意义的文件，当然Unix下">
+<meta property="og:description" content="c++ 操作系统 数据挖掘 linux">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-14T02:59:55.173Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SELECT模型解析">
-<meta name="twitter:description" content="Select的函数格式：int select(int maxfdp,fd_set readfds,fd_set writefds,fd_set errorfds,struct timevaltimeout);先说明两个结构体：第一，struct fd_set可以理解为一个集合，这个集合中存放的是文件描述符(filedescriptor)，即文件句柄，这可以是我们所说的普通意义的文件，当然Unix下">
+<meta name="twitter:title" content="Lil&#39; Goldfish">
+<meta name="twitter:description" content="c++ 操作系统 数据挖掘 linux">
   
     <link rel="alternative" href="/atom.xml" title="Lil&#39; Goldfish" type="application/atom+xml">
   
@@ -152,64 +150,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-SELECT模型解析" class="article article-type-post " itemscope itemprop="blogPost">
+            
+  
+    <article id="post-ELF文件解析器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      SELECT模型解析
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/22/ELF文件解析器/">ELF文件解析器(一)</a>
     </h1>
   
 
         
-        <a href="/2019/04/14/SELECT模型解析/" class="archive-article-date">
-  	<time datetime="2019-04-14T02:36:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-14</time>
+        <a href="/2019/03/22/ELF文件解析器/" class="archive-article-date">
+  	<time datetime="2019-03-22T02:15:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Select的函数格式：<br>int select(int maxfdp,fd_set <em>readfds,fd_set </em>writefds,fd_set <em>errorfds,struct timeval</em>timeout);<br>先说明两个结构体：<br>第一，struct fd_set可以理解为一个集合，这个集合中存放的是文件描述符(filedescriptor)，即文件句柄，这可以是我们所说的普通意义的文件，当然Unix下任何设备、管道、FIFO等都是文件形式，全部包括在内，所以毫无疑问一个socket就是一个文件，socket句柄就是一个文件描述符。fd_set集合可以通过一些宏由人为来操作，比如清空集合FD_ZERO(fd_set <em>)，将一个给定的文件描述符加入集合之中FD_SET(int ,fd_set</em>)，将一个给定的文件描述符从集合中删除FD_CLR(int,fd_set<em>)，检查集合中指定的文件描述符是否可以读写FD_ISSET(int ,fd_set</em> )。</p>
-<p>第二，struct timeval是一个大家常用的结构，用来代表时间值，有两个成员，一个是秒数，另一个是毫秒数。 </p>
-<p>具体解释select的参数：<br>int maxfdp是一个整数值，是指集合中所有文件描述符的范围，即所有文件描述符的最大值加1，不能错！在Windows中这个参数的值无所谓，可以设置不正确。<br><a id="more"></a><br>fd_set * readfds是指向fd_set结构的指针，这个集合中应该包括文件描述符，我们是要监视这些文件描述符的读变化的，即我们关心是否可以从这些文件中读取数据了，如果这个集合中有一个文件可读，select就会返回一个大于0的值，表示有文件可读，如果没有可读的文件，则根据timeout参数再判断是否超时，若超出timeout的时间，select返回0，若发生错误返回负值。可以传入NULL值，表示不关心任何文件的读变化。 </p>
-<p>fd_set * writefds是指向fd_set结构的指针，这个集合中应该包括文件描述符，我们是要监视这些文件描述符的写变化的，即我们关心是否可以向这些文件中写入数据了，如果这个集合中有一个文件可写，select就会返回一个大于0的值，表示有文件可写，如果没有可写的文件，则根据timeout参数再判断是否超时，若超出timeout的时间，select返回0，若发生错误返回负值。可以传入NULL值，表示不关心任何文件的写变化。 </p>
-<p>fd_set * errorfds同上面两个参数的意图，用来监视文件错误异常。 </p>
-<p>struct timeval * timeout是select的超时时间，这个参数至关重要，它可以使select处于三种状态，第一，若将NULL以形参传入，即不传入时间结构，就是将select置于阻塞状态，一定等到监视文件描述符集合中某个文件描述符发生变化为止；第二，若将时间值设为0秒0毫秒，就变成一个纯粹的非阻塞函数，不管文件描述符是否有变化，都立刻返回继续执行，文件无变化返回0，有变化返回一个正值；第三，timeout的值大于0，这就是等待的超时时间，即select在timeout时间内阻塞，超时时间之内有事件到来就返回了，否则在超时后不管怎样一定返回，返回值同上述。 </p>
-<p>对该函数进一步深究：<br>本函数用于确定一个或多个套接口的状态。对每一个套接口，调用者可查询它的可读性、可写性及错误状态信息。用fd_set结构来表示一组等待检查的套接口。在调用返回时，这个结构存有满足一定条件的套接口组的子集，并且select()返回满足条件的套接口的数目。有一组宏可用于对fd_set的操作，这些宏与Berkeley Unix软件中的兼容，但内部的表达是完全不同的。<br>readfds参数标识等待可读性检查的套接口。如果该套接口正处于监听listen()状态，则若有连接请求到达，该套接口便被标识为可读，这样一个accept()调用保证可以无阻塞完成。对其他套接口而言，可读性意味着有排队数据供读取。或者对于SOCK_STREAM类型套接口来说，相对于该套接口的虚套接口已关闭，于是recv()或recvfrom()操作均能无阻塞完成。如果虚电路被“优雅地”中止，则recv()不读取数据立即返回；如果虚电路被强制复位，则recv()将以WSAECONNRESET错误立即返回。如果SO_OOBINLINE选项被设置，则将检查带外数据是否存在（参见setsockopt()）。<br>writefds参数标识等待可写性检查的套接口。如果一个套接口正在connect()连接（非阻塞），可写性意味着连接顺利建立。如果套接口并未处于connect()调用中，可写性意味着send()和sendto()调用将无阻塞完成。〔但并未指出这个保证在多长时间内有效，特别是在多线程环境中〕。<br>exceptfds参数标识等待带外数据存在性或意味错误条件检查的套接口。请注意如果设置了SO_OOBINLINE选项为假FALSE，则只能用这种方法来检查带外数据的存在与否。对于SO_STREAM类型套接口，远端造成的连接中止和KEEPALIVE错误都将被作为意味出错。如果套接口正在进行连接connect()（非阻塞方式），则连接试图的失败将会表现在exceptfds参数中。<br>如果对readfds、writefds或exceptfds中任一个组类不感兴趣，可将它置为空NULL。</p>
-<p>返回值：返回状态发生变化的描述符总数。<br>负值：select错误<br>正值：某些文件可读写或出错<br>0：等待超时，没有可读写或错误的文件<br>错误代码：<br>    WSANOTINITIALISED：在使用此API之前应首先成功地调用WSAStartup()。<br>    WSAENETDOWN：      WINDOWS套接口实现检测到网络子系统失效。<br>    WSAEINVAL：        超时时间值非法。<br>    WSAEINTR：         通过一个WSACancelBlockingCall()来取消一个（阻塞的）调用。<br>    WSAEINPROGRESS：   一个阻塞的WINDOWS套接口调用正在运行中。<br>    WSAENOTSOCK：      描述字集合中包含有非套接口的元素。</p>
-<p>看看一些对于fd_set类型通过下面四个宏来操作：<br>FD_ZERO(fd_set <em>fdset) 将指定的文件描述符集清空，在对文件描述符集合进行设置前，必须对其进行初始化，如果不清空，由于在系统分配内存空间后，通常并不作清空处理，所以结果是不可知的。<br>FD_SET(fd_set </em>fdset) 用于在文件描述符集合中增加一个新的文件描述符。<br>FD_CLR(fd_set <em>fdset) 用于在文件描述符集合中删除一个文件描述符。<br>FD_ISSET(int fd,fd_set </em>fdset) 用于测试指定的文件描述符是否在该集合中。<br>判断描述符fd是否在给定的描述符集fdset中，通常配合select函数使用，由于select函数成功返回时会将未准备好的描述符位清零。通常我们使用FD_ISSET是为了检查在select函数返回后，某个描述符是否准备好，以便进行接下来的处理操作。</p>
-<p>FD_SETSIZE变量用于确定一个集合中最多有多少描述字（FD_SETSIZE缺省值为64，可在包含winsock.h前用#define FD_SETSIZE来改变该值）<br>上面在说明FD_SETSIZE时，winsock2.h中定义FD_SETSIZE的大小为64,这样就对readfds、writefds、exceptfds的socket句柄数进行了限制。在实际应用中可以使用端口分组或者重新定义FD_SETSIZE的方式进行解决。在stdAfx.h最末行添加如下定义：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FD_SETSIZE 1024                  <span class="comment">//socket句柄数</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXIMUM_WAIT_OBJECTS    1024     <span class="comment">//要等待的对象数</span></span></span><br></pre></td></tr></table></figure></p>
-<p>要注意的是我们还重定义了要另一个宏MAXIMUM_WAIT_OBJECTS,它表示要等待的对象数。重定义后，程序在现场运行正常。</p>
-<p>基于上面的讨论，可以轻松得出select模型的特点：<br>   （1)可监控的文件描述符个数取决与sizeof(fd_set)的值。<br>   （2）可以有效突破select可监控的文件描述符上限。<br>   （3）将fd加入select监控集的同时，还要再使用一个数据结构array保存放到select监控集中的fd，一是用于再select 返回后，array作为源数据和fd_set进行FD_ISSET判断。二是select返回后会把以前加入的但并无事件发生的fd清空，则每次开始 select前都要重新从array取得fd逐一加入（FD_ZERO最先），扫描array的同时取得fd最大值maxfd，用于select的第一个 参数。<br>   （4）可见select模型必须在select前循环array（加fd，取maxfd），select返回后循环array（FD_ISSET判断是否有时间发生）。</p>
-
+        <p> ELF(Executable and Linking Format), 即”可执行可连接格式”, 最初由UNIX系统实验室做为应用程序二进制值接口(Application Binary Interface - ABI)的一部分而制定和发布。</p>
+<h2 id="一、ELF文件的静态结构"><a href="#一、ELF文件的静态结构" class="headerlink" title="一、ELF文件的静态结构"></a>一、ELF文件的静态结构</h2><h3 id="1-1-介绍"><a href="#1-1-介绍" class="headerlink" title="1.1 介绍"></a>1.1 介绍</h3><p>具有Executable and Linking Format, 即”可执行可连接格式”, 具有这种格式的文件称为ELF文件。ELF规范中把ELF文件宽泛地称为”目标文件(object file)”,一般地, 我们把经过编译但没有连接的文件(Linux/Unix中的.o文件)称为目标文件,而ELF文件仅指连接好的可执行文件。<br>在ELF规范中,符合ELF文件格式规范的都成为ELF文件,也称为目标文件,而经过编译但没有连接的文件则称为”可重定位文件(relocatable file)”或”待重定位文件”。本篇采取与此规范相同的命名方式。</p>
+<h3 id="1-2-ELF文件格式概述"><a href="#1-2-ELF文件格式概述" class="headerlink" title="1.2 ELF文件格式概述"></a>1.2 ELF文件格式概述</h3><p>从连接的角度和运行的角度, 可以分别把目标文件的组成部分做一下划分:<br>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;目标文件格式<br>
+        
       
 
       
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
+    </p></div>
     <div class="article-info article-info-index">
       
       
@@ -218,7 +188,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">网络编程</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
@@ -227,84 +197,16 @@
       
 
       
-
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/22/ELF文件解析器/">展开全文 >></a>
+        </p>
       
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/04/14/SELECT模型解析/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/04/16/tcp粘包分析/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          tcp粘包分析
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2019/04/01/条款06-若不想使用编译器自动生成的函数-就该明确拒绝/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">条款06: 若不想使用编译器自动生成的函数,就该明确拒绝</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -319,32 +221,17 @@
         </div>
         
         
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    目录，不存在的…
-                    </div>
-                </span>
-            </div>
-        </div>
-        
     </div>
 </aside>
 
 
 
-  
-  
-  
 
   
-
   
-
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
   
 
 
@@ -370,8 +257,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

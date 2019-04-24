@@ -63,7 +63,7 @@
 			</ul>
 		</nav>
 		<nav>
-    			总文章数 20
+    			总文章数 21
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -151,6 +151,81 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-条款05-了解C-默默编写并调用哪些函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/31/条款05-了解C-默默编写并调用哪些函数/">条款05: 了解C++默默编写并调用哪些函数</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/31/条款05-了解C-默默编写并调用哪些函数/" class="archive-article-date">
+  	<time datetime="2019-03-31T14:00:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>几乎你写的每一个class都会有一个或多个构造函数、一个析构函数、一个copy assignment操作符、一个copy构造函数。如果你没有声明它们,编译器会帮你生成编译器版本的copy构造函数,copy赋值操作符,析构函数。如果你没有声明任何构造函数,编译器还会为你生成默认构造函数。所有这些函数是public且inline的。<br><strong>惟有当这些函数被调用时,它们才会被编译器创建出来。</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Empty</span> &#123;</span> &#125;;</span><br><span class="line">Empty e1;           <span class="comment">//默认构造函数</span></span><br><span class="line">Empty e2 = e1;      <span class="comment">//copy构造函数</span></span><br><span class="line">e2 = e1;            <span class="comment">//copy assignment操作符</span></span><br></pre></td></tr></table></figure></p>
+<p>编译器为你写的这些函数,它们做什么了呢？默认构造函数和析构函数会调用based class和non-static成员变量的构造函数和析构函数。注意,编译器产出的析构函数为non-virtual的,除非这个class的based class的析构函数声明为virtual。<br>
+        
+      
+
+      
+    </p></div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Effective C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/31/条款05-了解C-默默编写并调用哪些函数/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-条款04-确定对象被使用前已先被初始化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -830,85 +905,9 @@
 
 
   
-    <article id="post-ELF文件解析器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/22/ELF文件解析器/">ELF文件解析器(一)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/22/ELF文件解析器/" class="archive-article-date">
-  	<time datetime="2019-03-22T02:15:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p> ELF(Executable and Linking Format), 即”可执行可连接格式”, 最初由UNIX系统实验室做为应用程序二进制值接口(Application Binary Interface - ABI)的一部分而制定和发布。</p>
-<h2 id="一、ELF文件的静态结构"><a href="#一、ELF文件的静态结构" class="headerlink" title="一、ELF文件的静态结构"></a>一、ELF文件的静态结构</h2><h3 id="1-1-介绍"><a href="#1-1-介绍" class="headerlink" title="1.1 介绍"></a>1.1 介绍</h3><p>具有Executable and Linking Format, 即”可执行可连接格式”, 具有这种格式的文件称为ELF文件。ELF规范中把ELF文件宽泛地称为”目标文件(object file)”,一般地, 我们把经过编译但没有连接的文件(Linux/Unix中的.o文件)称为目标文件,而ELF文件仅指连接好的可执行文件。<br>在ELF规范中,符合ELF文件格式规范的都成为ELF文件,也称为目标文件,而经过编译但没有连接的文件则称为”可重定位文件(relocatable file)”或”待重定位文件”。本篇采取与此规范相同的命名方式。</p>
-<h3 id="1-2-ELF文件格式概述"><a href="#1-2-ELF文件格式概述" class="headerlink" title="1.2 ELF文件格式概述"></a>1.2 ELF文件格式概述</h3><p>从连接的角度和运行的角度, 可以分别把目标文件的组成部分做一下划分:<br>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;目标文件格式<br>
-        
-      
-
-      
-    </p></div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/22/ELF文件解析器/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -1005,11 +1004,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">

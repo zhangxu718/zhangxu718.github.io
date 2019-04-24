@@ -63,7 +63,7 @@
 			</ul>
 		</nav>
 		<nav>
-    			总文章数 20
+    			总文章数 21
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -151,6 +151,83 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-C-11新特性-右值引用于转移语义" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/24/C-11新特性-右值引用于转移语义/">C++11新特性 右值引用于转移语义</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/24/C-11新特性-右值引用于转移语义/" class="archive-article-date">
+  	<time datetime="2019-04-24T14:18:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>新特性的目的</strong><br>右值引用 (Rvalue Referene) 是 C++ 新标准 (C++11, 11 代表 2011 年 ) 中引入的新特性 , 它实现了转移语义 (Move Sementics) 和精确传递 (Perfect Forwarding)。它的主要目的有两个方面：</p>
+<p>1.消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率。<br>2.能够更简洁明确地定义泛型函数。</p>
+<p><strong>左值与右值的定义</strong><br>C++( 包括 C) 中所有的表达式和变量要么是左值，要么是右值。通俗的左值的定义就是非临时对象，那些可以在多条语句中使用的对象。所有的变量都满足这个定义，在多条代码中都可以使用，都是左值。右值是指临时的对象，它们只在当前的语句中有效。请看下列示例 :<br>1.简单的赋值语句<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br></pre></td></tr></table></figure></p>
+<p>在这条语句中，i 是左值，0 是临时值，就是右值。在下面的代码中，i 可以被引用，0 就不可以了。立即数都是右值。<br>2.右值也可以出现在赋值表达式的左边，但是不能作为赋值的对象，因为右值只在当前语句有效，赋值没有意义。<br>如：((i&gt;0) ? i : j) = 1;<br>
+        
+      
+
+      
+    </p></div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/24/C-11新特性-右值引用于转移语义/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-大话Select-Poll-Epoll" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -837,84 +914,9 @@
 
 
   
-    <article id="post-条款05-了解C-默默编写并调用哪些函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/31/条款05-了解C-默默编写并调用哪些函数/">条款05: 了解C++默默编写并调用哪些函数</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/31/条款05-了解C-默默编写并调用哪些函数/" class="archive-article-date">
-  	<time datetime="2019-03-31T14:00:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>几乎你写的每一个class都会有一个或多个构造函数、一个析构函数、一个copy assignment操作符、一个copy构造函数。如果你没有声明它们,编译器会帮你生成编译器版本的copy构造函数,copy赋值操作符,析构函数。如果你没有声明任何构造函数,编译器还会为你生成默认构造函数。所有这些函数是public且inline的。<br><strong>惟有当这些函数被调用时,它们才会被编译器创建出来。</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Empty</span> &#123;</span> &#125;;</span><br><span class="line">Empty e1;           <span class="comment">//默认构造函数</span></span><br><span class="line">Empty e2 = e1;      <span class="comment">//copy构造函数</span></span><br><span class="line">e2 = e1;            <span class="comment">//copy assignment操作符</span></span><br></pre></td></tr></table></figure></p>
-<p>编译器为你写的这些函数,它们做什么了呢？默认构造函数和析构函数会调用based class和non-static成员变量的构造函数和析构函数。注意,编译器产出的析构函数为non-virtual的,除非这个class的based class的析构函数声明为virtual。<br>
-        
-      
-
-      
-    </p></div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Effective C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/31/条款05-了解C-默默编写并调用哪些函数/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1011,11 +1013,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
